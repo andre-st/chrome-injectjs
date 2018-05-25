@@ -31,4 +31,5 @@ javascript-injection
 css-inject
 leightweight
 tiny
+trust
 paranoid
