@@ -1,13 +1,13 @@
 {
 	"manifest_version": 2,
 	
- 	"name"        : "Mix Custom Javascript Into Websites",
-	"short_name"  : "CodeMixins",
+ 	"name"        : "Tiny Javascript Injector",
+	"short_name"  : "TinyInject",
 	"version"     : "0.1.0",
 	"version_name": "Release 2018-05-24",
 	"description" : "",
 	"author"      : "andre-st",
-	"homepage_url": "https://github.com/andre-st/chrome-codemixins/blob/master/README.md",
+	"homepage_url": "https://github.com/andre-st/chrome-inject/blob/master/README.md",
 	
 	"offline_enabled"       : true,
 	"permissions"           : [ "storage", "http://*/", "https://*/" ],
