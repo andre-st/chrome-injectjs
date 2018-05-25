@@ -1,8 +1,8 @@
-# Custom Javascript Injector for Google Chrome
+# Javascript Injector for Google Chrome
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
 
-Customize a website when there is no native setting:
+Customize a website when there is no native setting.
 
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
@@ -21,8 +21,6 @@ However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. wi
 - no automatic updates, see Installation section
 - in order to import / export settings you just copy/paste the content of the text area
 
-![Logo](image/icon128.png)
-
 
 ## Installation
 
@@ -32,6 +30,8 @@ However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. wi
 4. Chrome > Settings > Extensions > [x] Developer mode (upper right corner)
 5. Chrome > Settings > Extensions > click <kbd>Load unpacked extension</kbd> 
 6. browse to the source directory of the downloaded, unarchived release and confirm
+
+![Logo](image/icon128.png)
 
 
 ## Feedback
