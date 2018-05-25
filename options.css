@@ -32,12 +32,12 @@ fieldset
 
 #btnSave:after
 {
-	content: "Save startup script";
+	content: "Save and load script";
 }
 
 .editorChangedState #btnSave:after
 {
-	content: "Save changed script *";
+	content: "Save and load changed script *";
 }
 
 .editorSavedState #btnSave:after
