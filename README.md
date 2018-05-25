@@ -6,7 +6,8 @@ Customize a remote website when there is no native setting.
 
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
-However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. with full control over the contents you retrieve on the Web every day. Chrome _content scripts_ can modify websites, e.g. [political](https://chrome.google.com/webstore/search/politics%20OR%20political%20OR%20activist%20OR%20activisim?hl=en&_category=extensions) content, exfiltrate private information and be attacked by the visited site.
+However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. with full control over the contents you retrieve on the Web every day. Chrome _content scripts_ can modify websites, e.g. [political](https://chrome.google.com/webstore/search/politics%20OR%20political%20OR%20activist%20OR%20activisim?hl=en&_category=extensions) content and exfiltrate private information. 
+However, visited sites [cannot attack](https://developer.chrome.com/extensions/content_scripts#isolated_world) content sripts, they only share the DOM.
 
 
 ## Program Features and Screenshots
