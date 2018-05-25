@@ -13,7 +13,7 @@ Chrome [content scripts](https://developer.chrome.com/extensions/content_scripts
 ## Program Features and Screenshots
 
 - tiny, kept to the bare minimum; maintenance takes little time (side project)
-- easy to inspect if you consider using it—no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files
+- source code easy to inspect if you consider using it—no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files
 - it lacks any comfort and visual beauty: no syntax highlighting or validation (no Ace editor, jslint, ...)
 - flexible and easy to extend due to its script-based configuration
 
