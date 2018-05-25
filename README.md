@@ -6,8 +6,6 @@
 
 ## Customize a website when there is no native setting
 
-Larger buttons, (non-)collapsed comments etc.
-
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](TODO).
 
@@ -19,28 +17,12 @@ information, and can be attacked by the visited page.
 My extension is tiny, it lacks any comfort and visual beauty.
 No syntax highlighting or validation (Ace editor, jslint, ...).
 Easy to inspect if you consider using it (no minified libs etc).
-No automatically updates (see Installation section).
+No automatic updates (see Installation section).
 
 Import/Export is just copy/paste of the textarea's content.
 
 
 ![Screenshot](image/screenshot-20180525.png)
-
-
-
-## Configuration Example
-
-```javascript
-mixin( "https://www.example.com/", () =>
-{
-	document.querySelector( "#toolbar-mark-read a.btn" ).style.cssText = "width: 150px;";
-});
-
-mixin( "https://www.another.com/example/123/", () =>
-{
-	// ...your Javascript here
-});
-```
 
 
 ## Installation (OS-independent)
