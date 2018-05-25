@@ -8,7 +8,6 @@
 
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](TODO).
-
 But you have to trust "sqdevil@yandex.ru", "junkycoder" etc 
 with full control over your daily readings.
 Chrome "content scripts" can potentially exfiltrate sensible 
