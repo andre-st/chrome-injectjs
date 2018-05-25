@@ -9,7 +9,7 @@ There are other and better code injection extensions, e.g.,
 However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. with full control over the contents you retrieve on the Web every day. Chrome _content scripts_ can modify websites, e.g. [political](https://chrome.google.com/webstore/search/politics%20OR%20political%20OR%20activist%20OR%20activisim?hl=en&_category=extensions) content, exfiltrate private information and be attacked by the visited site.
 
 
-## Program features and screenshots
+## Program Features and Screenshots
 
 - tiny, kept to the bare minimum
 - easy to inspect if you consider using it—no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files
