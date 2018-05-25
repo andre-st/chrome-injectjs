@@ -13,6 +13,7 @@ However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. wi
 My extension is tiny (kept to the bare minimum), it lacks any comfort and visual beauty.
 No syntax highlighting or validation (Ace editor, jslint, ...).
 Easy to inspect if you consider using it—no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files.
+Too, it is flexible and easy to extend due to its script-based configuration.
 No automatic updates, see Installation section.
 
 In order to import / export settings you just copy/paste the content of the text area.
