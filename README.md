@@ -1,4 +1,4 @@
-# Custom Javascript Injector For Google Chrome
+# Custom Javascript Injector for Google Chrome
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
 
@@ -7,8 +7,6 @@ Customize a website when there is no native setting:
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
 However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. with full control over the contents you retrieve on the Web every day. Chrome "content scripts" can modify websites, e.g. [political](https://chrome.google.com/webstore/search/politics%20OR%20political%20OR%20activist%20OR%20activisim?hl=en&_category=extensions) content, exfiltrate private information and be attacked by the visited site.
-
-![Logo](image/icon128.png)
 
 
 ## Program features and screenshots
@@ -23,7 +21,7 @@ However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. wi
 - no automatic updates, see Installation section
 - in order to import / export settings you just copy/paste the content of the text area
 
-
+![Logo](image/icon128.png)
 
 
 ## Installation
