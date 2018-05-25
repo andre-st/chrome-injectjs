@@ -23,7 +23,7 @@ In order to import / export settings you just copy/paste the content of the text
 ![Screenshot](image/screenshot-20180525.png)
 
 
-## Installation (OS-independent)
+## Installation
 
 1. not available in Chrome's Web Store
 2. you cannot easily install CRX-files permanently from other sites
@@ -32,10 +32,10 @@ In order to import / export settings you just copy/paste the content of the text
 5. Chrome > Settings > Extensions > click <kbd>Load unpacked extension</kbd> 
 6. browse to the source directory of the downloaded, unarchived release and confirm
 
-### Feedback:
+
+## Feedback
 
 Use [GitHub](https://github.com/andre-st/chrome-codemixins/issues) or see [AUTHORS.md](AUTHORS.md) file
-
 
 
 ## License
