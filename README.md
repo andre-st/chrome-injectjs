@@ -1,4 +1,4 @@
-# André's Javascript Injector for Google Chrome
+# Tiny Javascript Injector for Google Chrome
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
 
