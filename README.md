@@ -1,4 +1,4 @@
-# Chrome Extension: Mix Custom Javascript Into Websites
+# Chrome: Mix Custom Javascript Into Websites
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
 
@@ -20,6 +20,8 @@ No automatic updates (see Installation section).
 
 Import/Export is just copy/paste of the textarea's content.
 
+
+![Logo](image/icon128.png)
 
 ![Screenshot](image/screenshot-20180525.png)
 
