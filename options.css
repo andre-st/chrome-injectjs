@@ -3,26 +3,31 @@ body
 	background-color: #efefef;
 	font-size: 12pt;
 	color: #444;
+	padding: 0;
+	margin: 0;
 }
 
-
-#toolbar
+button
 {
-	padding: 0 0 0.5em 0;
+	padding: 0.35em 0 0.35em 0.5em;
+	background-color: #dfdfdf;
 }
 
+button.default
+{
+	font-weight: bold;
+}
 
+fieldset
+{
+	padding: 0.25em 0.5em 0.25em 0.5em ;
+	border: 0 none;
+}
 
 #btnSave
 {
-	background-color: #dfdfdf;
-	width: 14em;
+	margin: 0.25em 0 0 0;
 	width: 100%;
-}
-
-#btnSave:before
-{
-	content: "\2713";
 }
 
 #btnSave:after
@@ -30,29 +35,9 @@ body
 	content: "Save startup script";
 }
 
-.editorChangedState
-{
-	background-color: #FFFFDD;  /* yellow */
-}
-
-.editorChangedState #btnSave
-{
-	background-color: #FFFFAA;
-}
-
 .editorChangedState #btnSave:after
 {
-	content: "Save changed script";
-}
-
-.editorSavedState
-{
-	background-color: #deefd8;
-}
-
-.editorSavedState #btnSave
-{
-	background-color: #cedfc8;
+	content: "Save changed script *";
 }
 
 .editorSavedState #btnSave:after
@@ -60,12 +45,10 @@ body
 	content: "Script saved"
 }
 
-
 textarea
 {
 	/* Remove default glow border if focused */
 	border: 0 none;
-	border: none;
 	overflow: auto;
 	outline: none;
 	-webkit-box-shadow: none;
@@ -73,13 +56,13 @@ textarea
 	box-shadow: none;
 	
 	background-color: #fff;
-	margin: 0.1em 0;
+	margin: 0;
 	padding: 0.5em;
 	font-size: 10pt;
 	font-family: monospace;
 	box-sizing: border-box;
 	resize: none;
 	width:  calc( 100vw - 1.5em  );
-	height: calc( 100vh - 5.1em );
+	height: calc( 100vh - 4em );
 }
 

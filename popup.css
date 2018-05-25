@@ -1,13 +1,22 @@
 
-#btnOnOff:after
+button
 {
-	content: "disable";
+	width: 100%;
+	min-width: 7em;
+	padding: 0.35em 0 0.35em 0.5em;
+	margin: 0.25em 0;
+	background-color: #e5e5e5;
+	text-align: left;
 }
 
-#btnOnOff:before
+#btnOnOff:after
 {
-	content: "\25FE";   /*  []  */
-	color: #444444; 
+	content: "\25FE\00A0\00A0 disable";
+}
+
+.mixinsEnabledState #btnOnOff
+{
+	background-color: #ffd3d3;
 }
 
 .mixinsDisabledState #btnOnOff
@@ -17,19 +26,6 @@
 
 .mixinsDisabledState #btnOnOff:after
 {
-	content: "enable";
+	content: "\25ba\00A0\00A0 enable";
 }
-
-.mixinsDisabledState #btnOnOff:before
-{
-	content: "\25ba";   /*  |>  */
-	color: #008000; 
-}
-
-#btnOptions:before
-{ 
-	content: "\2699";   /* gear */
-	color: #47417b; 
-}
-
 
