@@ -1,0 +1,85 @@
+body
+{
+	background-color: #efefef;
+	font-size: 12pt;
+	color: #444;
+}
+
+
+#toolbar
+{
+	padding: 0 0 0.5em 0;
+}
+
+
+
+#btnSave
+{
+	background-color: #dfdfdf;
+	width: 14em;
+	width: 100%;
+}
+
+#btnSave:before
+{
+	content: "\2713";
+}
+
+#btnSave:after
+{
+	content: "Save startup script";
+}
+
+.editorChangedState
+{
+	background-color: #FFFFDD;  /* yellow */
+}
+
+.editorChangedState #btnSave
+{
+	background-color: #FFFFAA;
+}
+
+.editorChangedState #btnSave:after
+{
+	content: "Save changed script";
+}
+
+.editorSavedState
+{
+	background-color: #deefd8;
+}
+
+.editorSavedState #btnSave
+{
+	background-color: #cedfc8;
+}
+
+.editorSavedState #btnSave:after
+{
+	content: "Script saved"
+}
+
+
+textarea
+{
+	/* Remove default glow border if focused */
+	border: 0 none;
+	border: none;
+	overflow: auto;
+	outline: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	
+	background-color: #fff;
+	margin: 0.1em 0;
+	padding: 0.5em;
+	font-size: 10pt;
+	font-family: monospace;
+	box-sizing: border-box;
+	resize: none;
+	width:  calc( 100vw - 1.5em  );
+	height: calc( 100vh - 5.1em );
+}
+

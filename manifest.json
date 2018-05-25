@@ -1,0 +1,38 @@
+{
+	"manifest_version": 2,
+	
+ 	"name"        : "Mix Custom Javascript Into Websites",
+	"short_name"  : "CodeMixins",
+	"version"     : "0.1.0",
+	"version_name": "Release 2018-05-24",
+	"description" : "",
+	"author"      : "andre-st",
+	"homepage_url": "https://github.com/andre-st/chrome-codemixins/blob/master/README.md",
+	
+	"offline_enabled"       : true,
+	"permissions"           : [ "storage", "http://*/", "https://*/" ],
+	"minimum_chrome_version": "24",
+	
+	"icons":
+	{
+		"16" : "image/icon16.png",
+		"48" : "image/icon48.png",
+		"128": "image/icon128.png"
+	},
+	
+	"browser_action": 
+	{
+		"default_icon" : "image/icon16.png",
+		"default_popup": "popup.html"
+	},
+	
+	"options_page": "options.html",
+	
+	"content_scripts": 
+	[{ 
+		"js"        : [ "content.js" ],
+		"matches"   : [ "<all_urls>" ],
+		"all_frames": true,
+		"run_at"    : "document_end"
+     }]
+}

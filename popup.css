@@ -1,0 +1,35 @@
+
+#btnOnOff:after
+{
+	content: "disable";
+}
+
+#btnOnOff:before
+{
+	content: "\25FE";   /*  []  */
+	color: #444444; 
+}
+
+.mixinsDisabledState #btnOnOff
+{
+	background-color: #a2efaa;
+}
+
+.mixinsDisabledState #btnOnOff:after
+{
+	content: "enable";
+}
+
+.mixinsDisabledState #btnOnOff:before
+{
+	content: "\25ba";   /*  |>  */
+	color: #008000; 
+}
+
+#btnOptions:before
+{ 
+	content: "\2699";   /* gear */
+	color: #47417b; 
+}
+
+

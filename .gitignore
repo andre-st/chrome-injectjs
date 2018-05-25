@@ -1,0 +1,8 @@
+*~
+*.bak
+*.tmp
+*.pem
+*.crx
+image/screenshots.xcf
+image/icons.svg
+out/
