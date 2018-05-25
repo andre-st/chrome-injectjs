@@ -1,10 +1,8 @@
-# Chrome: Mix Custom Javascript Into Websites
+# Custom Javascript Injector For Google Chrome
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
 
-
-
-## Customize a website when there is no native setting
+Customize a website when there is no native setting:
 
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
@@ -22,7 +20,7 @@ However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. wi
 
   ![Screenshot](image/screenshot-20180525.png)
   
-- no automatic updates, see Installation section.
+- no automatic updates, see Installation section
 - in order to import / export settings you just copy/paste the content of the text area
 
 
