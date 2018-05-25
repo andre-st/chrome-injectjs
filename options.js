@@ -19,7 +19,7 @@ nsUI.init( () =>
 				() => nsUI.setState( "editorSavedState", EDITOR_STATES ) );
 	});
 	
-	nsUI.onCtrlS( nsUI.elem( "#btnSave" ).click );
+	nsUI.onCtrlS( () => nsUI.elem( "#btnSave" ).click() );
 	
 	chrome.storage.sync.get( ["mixinsScript"], stored => 
 	{
