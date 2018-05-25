@@ -8,7 +8,7 @@
 
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
-However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. with full control over the contents you retrieve on the Web every day. Chrome "content scripts" can modify websites, e.g. political topics, exfiltrate private information and be attacked by the visited site.
+However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. with full control over the contents you retrieve on the Web every day. Chrome "content scripts" can modify websites, e.g. political content, exfiltrate private information and be attacked by the visited site.
 
 My extension is tiny, it lacks any comfort and visual beauty.
 No syntax highlighting or validation (Ace editor, jslint, ...).
