@@ -9,7 +9,7 @@ body
 
 button
 {
-	padding: 0.35em 0 0.35em 0.5em;
+	padding: 0.45em 0 0.45em 0.5em;
 	background-color: #dfdfdf;
 }
 
@@ -20,7 +20,7 @@ button.default
 
 fieldset
 {
-	padding: 0.25em 0.5em 0.25em 0.5em ;
+	padding: 0.35em 0.5em 0.35em 0.5em ;
 	border: 0 none;
 }
 
@@ -62,7 +62,7 @@ textarea
 	font-family: monospace;
 	box-sizing: border-box;
 	resize: none;
-	width:  calc( 100vw - 1.5em  );
-	height: calc( 100vh - 4em );
+	width:  calc( 100vw - 1.5em );
+	height: calc( 100vh - 5em   );
 }
 
