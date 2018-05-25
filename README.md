@@ -16,8 +16,8 @@ However, you must entrust "sqdevil<span></span>@yandex.ru", "junkycoder" etc. wi
 ## Program features and screenshots
 
 - tiny, kept to the bare minimum
-- it lacks any comfort and visual beauty: no syntax highlighting or validation (Ace editor, jslint, ...)
 - easy to inspect if you consider using it—no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files
+- it lacks any comfort and visual beauty: no syntax highlighting or validation (Ace editor, jslint, ...)
 - flexible and easy to extend due to its script-based configuration
 
   ![Screenshot](image/screenshot-20180525.png)
