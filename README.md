@@ -35,7 +35,7 @@ In order to import / export settings you just copy/paste the content of the text
 
 ## Feedback
 
-Use [GitHub](https://github.com/andre-st/chrome-codemixins/issues) or see [AUTHORS.md](AUTHORS.md) file
+Use [GitHub](https://github.com/andre-st/chrome-inject/issues) or see [AUTHORS.md](AUTHORS.md) file
 
 
 ## License
