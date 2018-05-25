@@ -31,3 +31,4 @@ javascript-injection
 css-inject
 leightweight
 tiny
+paranoid
