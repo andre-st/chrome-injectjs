@@ -5,7 +5,7 @@ chrome-inject
 
 Description:
 
-Customize a website when there is no native setting. This extension injects custom Javascript on every visit.
+Customize a remote website when there is no native setting. This extension injects custom Javascript on every visit.
 
 
 Website:
