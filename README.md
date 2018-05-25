@@ -8,7 +8,7 @@
 
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
-But you have to trust "sqdevil@yandex\.ru", "junkycoder" etc 
+But you have to trust "sqdevil<span></span>@yandex.ru", "junkycoder" etc 
 with full control over your daily readings.
 Chrome "content scripts" can potentially exfiltrate sensible 
 information, and can be attacked by the visited page.
