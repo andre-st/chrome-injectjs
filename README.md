@@ -20,7 +20,7 @@ Chrome [content scripts](https://developer.chrome.com/extensions/content_scripts
   ![Screenshot](image/screenshot-20180525.png)
   
 - no automatic updates, see Installation section
-- in order to export/import settings you just copy/paste the content of the text area
+- export/import = copy/paste the content of the text area
 
 
 ## Installation
