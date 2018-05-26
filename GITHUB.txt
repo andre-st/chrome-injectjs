@@ -1,6 +1,6 @@
 Repository Name:
 
-chrome-inject
+chrome-injectjs
 
 
 Description:

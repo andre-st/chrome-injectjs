@@ -37,7 +37,7 @@ Chrome [content scripts](https://developer.chrome.com/extensions/content_scripts
 
 ## Feedback
 
-Use [GitHub](https://github.com/andre-st/chrome-inject/issues) or see [AUTHORS.md](AUTHORS.md) file
+Use [GitHub](https://github.com/andre-st/chrome-injectjs/issues) or see [AUTHORS.md](AUTHORS.md) file
 
 
 ## License

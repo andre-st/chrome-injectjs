@@ -43,6 +43,9 @@ const nsUI =
 	},
 	
 	
+	stateListeners: [],  // [callback(state),...]
+	
+	
 	/**
 	 * @param  string
 	 * @param  array of string
@@ -56,6 +59,9 @@ const nsUI =
 	 */
 	setState: function( theState, thePossibleStates, theSelector )
 	{
+		console.assert( thePossibleStates.includes( theState ), 
+				"Expect possible states to include '" + theState + "'" );
+		
 		const a = document.querySelectorAll( theSelector || "body" );
 		for( var i = 0; i < a.length; i++ )
 		{
@@ -63,6 +69,8 @@ const nsUI =
 			thePossibleStates.forEach( s => cn = cn.replace( s, '' ) );  // Removes prev state
 			a[i].className = cn + ' ' + theState;
 		}
+		
+		nsUI.stateListeners.forEach( l => l( theState ) );
 	},
 	
 	
