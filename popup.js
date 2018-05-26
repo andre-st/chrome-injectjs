@@ -9,8 +9,8 @@ function setIconState( theState )
 {
 	chrome.browserAction.setIcon({ 
 			path: theState == "mixinsDisabledState"
-	                          ? "image/icon16-disabled.png"
-	                          : "image/icon16.png" });
+			                ? "image/icon16-disabled.png"
+			                : "image/icon16.png" });
 }
 
 
