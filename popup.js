@@ -4,11 +4,12 @@
 const MIXINS_STATES = [ "mixinsEnabledState", "mixinsDisabledState" ];
 
 
-function setIconState( isEnabled )
+
+function setIconState( theState )
 {
-	chrome.browserAction.setIcon({ path: isEnabled 
-			? "image/icon16.png" 
-			: "image/icon16-disabled.png" });
+	chrome.browserAction.setIcon({ path: theState == "mixinsDisabledState"
+			? "image/icon16-disabled.png" 
+			: "image/icon16.png" });
 }
 
 
@@ -28,26 +29,15 @@ if( typeof nsUI !== "undefined" )  // Popup script:
 					() => nsUI.setState( newState, MIXINS_STATES ) );
 		});
 		
-		nsUI.stateListeners.push( state => 
-		{
-			if( !MIXINS_STATES.includes( state ) ) return;
-			setIconState( state == "mixinsEnabledState" );
-		});
+		nsUI.stateListeners.push( s => setIconState( s ) );
 		
-		chrome.storage.sync.get( ["mixinsState"], stored =>
-		{
-			if( stored.mixinsState )
-				nsUI.setState( stored.mixinsState, MIXINS_STATES );
-		});
+		chrome.storage.sync.get( ["mixinsState"], 
+			r => nsUI.setState( r.mixinsState || "mixinsEnabledState", MIXINS_STATES ) );
 	});
-	
 }
 else  // Background script:
 {
-	chrome.storage.sync.get( ["mixinsState"], stored =>
-	{
-		if( stored.mixinsState )
-			setIconState( stored.mixinsState == "mixinsEnabledState" );
-	});
+	chrome.storage.sync.get( ["mixinsState"], 
+			r => setIconState( r.mixinsState || "mixinsEnabledState" ) );
 }
 
