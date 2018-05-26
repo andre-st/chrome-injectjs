@@ -22,7 +22,7 @@
 	
 	"browser_action": 
 	{
-		"default_icon" : "image/icon16-off.png",
+		"default_icon" : "image/icon16-disabled.png",
 		"default_popup": "popup.html"
 	},
 	

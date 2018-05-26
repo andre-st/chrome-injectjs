@@ -4,12 +4,11 @@
 const MIXINS_STATES = [ "mixinsEnabledState", "mixinsDisabledState" ];
 
 
-function setIconState( isActive )
+function setIconState( isEnabled )
 {
-	chrome.browserAction.setIcon(
-	{
-		path: isActive ? "image/icon16.png" : "image/icon16-off.png" 
-	});
+	chrome.browserAction.setIcon({ path: isEnabled 
+			? "image/icon16.png" 
+			: "image/icon16-disabled.png" });
 }
 
 
