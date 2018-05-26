@@ -22,11 +22,17 @@
 	
 	"browser_action": 
 	{
-		"default_icon" : "image/icon16.png",
+		"default_icon" : "image/icon16-off.png",
 		"default_popup": "popup.html"
 	},
 	
 	"options_page": "options.html",
+
+	"background":
+	{
+		"scripts"   : ["popup.js"],
+		"persistent": true
+	},
 	
 	"content_scripts": 
 	[{ 
