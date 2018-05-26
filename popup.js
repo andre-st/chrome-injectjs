@@ -36,7 +36,7 @@ else  // Popup script:
 					() => nsUI.setState( newState, MIXINS_STATES ) );
 		});
 		
-		nsUI.stateListeners.push( s => setIconState( s ) );
+		nsUI.stateListeners.push( setIconState );
 		
 		chrome.storage.sync.get( ["mixinsState"], 
 				r => nsUI.setState( r.mixinsState || MIXINS_DEFAULT_STATE, MIXINS_STATES ) );
