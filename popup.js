@@ -20,26 +20,23 @@ if( typeof nsUI === "undefined" )  // Background script:
 			r => setIconState( r.mixinsState || MIXINS_DEFAULT_STATE ) );
 	
 }
-else  // Popup script:
+else nsUI.init( () =>  // Popup script:
 {
-	nsUI.init( () =>
+	nsUI.bind( "#btnOptions", "click", nsUI.openOptions );
+	
+	nsUI.bind( "#btnOnOff", "click", () =>
 	{
-		nsUI.bind( "#btnOptions", "click", nsUI.openOptions );
+		const newState = nsUI.hasState( "mixinsEnabledState" )
+				? "mixinsDisabledState" 
+				: "mixinsEnabledState";
 		
-		nsUI.bind( "#btnOnOff", "click", () =>
-		{
-			const newState = nsUI.hasState( "mixinsEnabledState" )
-					? "mixinsDisabledState" 
-					: "mixinsEnabledState";
-			
-			chrome.storage.sync.set({ "mixinsState": newState },
-					() => nsUI.setState( newState, MIXINS_STATES ) );
-		});
-		
-		nsUI.stateListeners.push( setIconState );
-		
-		chrome.storage.sync.get( ["mixinsState"], 
-				r => nsUI.setState( r.mixinsState || MIXINS_DEFAULT_STATE, MIXINS_STATES ) );
+		chrome.storage.sync.set({ "mixinsState": newState },
+				() => nsUI.setState( newState, MIXINS_STATES ) );
 	});
-}
+	
+	nsUI.stateListeners.push( setIconState );
+	
+	chrome.storage.sync.get( ["mixinsState"], 
+			r => nsUI.setState( r.mixinsState || MIXINS_DEFAULT_STATE, MIXINS_STATES ) );
+});
 
