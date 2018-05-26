@@ -1,19 +1,26 @@
 "use strict";
 
 
-const MIXINS_STATES = [ "mixinsEnabledState", "mixinsDisabledState" ];
-
+const MIXINS_STATES        = [ "mixinsEnabledState", "mixinsDisabledState" ];
+const MIXINS_DEFAULT_STATE =   "mixinsEnabledState";  // First run, nothing stored
 
 
 function setIconState( theState )
 {
-	chrome.browserAction.setIcon({ path: theState == "mixinsDisabledState"
-			? "image/icon16-disabled.png" 
-			: "image/icon16.png" });
+	chrome.browserAction.setIcon({ 
+			path: theState == "mixinsDisabledState"
+	                          ? "image/icon16-disabled.png"
+	                          : "image/icon16.png" });
 }
 
 
-if( typeof nsUI !== "undefined" )  // Popup script:
+if( typeof nsUI === "undefined" )  // Background script:
+{
+	chrome.storage.sync.get( ["mixinsState"], 
+			r => setIconState( r.mixinsState || MIXINS_DEFAULT_STATE ) );
+	
+}
+else  // Popup script:
 {
 	nsUI.init( () =>
 	{
@@ -32,12 +39,7 @@ if( typeof nsUI !== "undefined" )  // Popup script:
 		nsUI.stateListeners.push( s => setIconState( s ) );
 		
 		chrome.storage.sync.get( ["mixinsState"], 
-			r => nsUI.setState( r.mixinsState || "mixinsEnabledState", MIXINS_STATES ) );
+				r => nsUI.setState( r.mixinsState || MIXINS_DEFAULT_STATE, MIXINS_STATES ) );
 	});
-}
-else  // Background script:
-{
-	chrome.storage.sync.get( ["mixinsState"], 
-			r => setIconState( r.mixinsState || "mixinsEnabledState" ) );
 }
 
