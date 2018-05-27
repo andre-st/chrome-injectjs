@@ -9,7 +9,8 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 		// Content scripts and the website share the DOM but no JS functions.
 		// https://developer.chrome.com/extensions/content_scripts#isolated_world
 		// We run user scripts in the world of the target website.
-		// There's no good reason to have it access our extension API.
+		// This allows us to call the website's Javascript functions, and
+		// there's no good reason to have it access our extension API.
 		
 		const s = document.createElement( "script" );
 		s.textContent = "(" + theCallback + ")();";
