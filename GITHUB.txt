@@ -29,7 +29,7 @@ mixin
 mixins
 javascript-injection
 css-inject
-leightweight
+lightweight
 tiny
 trust
 paranoid
