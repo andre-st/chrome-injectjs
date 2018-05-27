@@ -118,17 +118,19 @@ const nsUI =
 		
 		nsUI.bind( theSelector, "keydown", event =>
 		{
+			const ta = event.target;
+			
 			// Enable tabs for indentation (no native support)
 			if( theOptions.canTabs
 			&&  event.keyCode === 9 )
 			{
-				const p1   = this.selectionStart;
-				const p2   = this.selectionEnd;
-				this.value = this.value.substring( 0, p1 ) 
+				const p1 = ta.selectionStart;
+				const p2 = ta.selectionEnd;
+				ta.value = ta.value.substring( 0, p1 ) 
 				           + "\t" 
-				           + this.value.substring( p2 );
+				           + ta.value.substring( p2 );
 				
-				this.selectionStart = this.selectionEnd = p1 + 1;
+				ta.selectionStart = ta.selectionEnd = p1 + 1;
 				event.preventDefault();
 				return false;
 			}
