@@ -15,7 +15,7 @@ Chrome [content scripts](https://developer.chrome.com/extensions/content_scripts
 - tiny, kept to the bare minimum = little maintenance
 - easy to inspect if you consider using it—no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files
 - it lacks any comfort and visual beauty: no syntax highlighting or validation (no Ace editor, jslint, ...)
-- optionally break isolation and call target website's Javascript function: `mixinUnsafe(…)`
+- optionally break isolation and call target website's Javascript functions: `mixinUnsafe(…)`
 - flexible and easy to extend due to its script-based configuration
 
   ![Screenshot](image/screenshot-20180525.png)
