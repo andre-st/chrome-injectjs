@@ -18,6 +18,6 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 		s.remove();
 	}
 	
-	eval( stored.mixinsScript );  // Script calls mixinXXX() multiple times
+	eval( stored.mixinsScript );  // Script calls mixin() multiple times
 });
 
