@@ -33,8 +33,6 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
 5. Chrome > Settings > Extensions > click <kbd>Load unpacked extension</kbd> 
 6. browse to the source directory of the downloaded, unarchived release and confirm
 
-![Logo](image/icon128.png)
-
 
 ## Feedback
 
