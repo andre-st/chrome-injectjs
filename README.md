@@ -19,7 +19,7 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
 
   ![Screenshot](image/screenshot-20180525.png)
   
-- your mixins scripts run in the [context of the target website](https://developer.chrome.com/extensions/content_scripts#isolated_world), so you can call its Javascript functions
+- your mixin scripts run in the [context of the target website](https://developer.chrome.com/extensions/content_scripts#isolated_world), so you can call its Javascript functions
 - no automatic updates, see Installation section
 - export/import = copy/paste the content of the text area
 
