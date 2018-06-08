@@ -15,7 +15,7 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
 - tiny, kept to the bare minimum = little maintenance
 - easy to inspect if you consider using it—no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files
 - it lacks any comfort and visual beauty: no syntax highlighting or validation (no Ace editor, jslint, ...)
-- flexible and easy to extend due to its script-based configuration (rather than having a complex UI that tries to be as flexible as a programming language just use a programming language); you can add comments everywhere
+- flexible and easy to extend due to its script-based configuration (rather than having a complex UI that tries to be as flexible as a programming language just use a programming language); you can add comments everywhere, too
 
   ![Screenshot](image/screenshot-20180525.png)
   
