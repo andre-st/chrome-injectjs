@@ -28,7 +28,7 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
 
 1. not available in Chrome's Web Store
 2. you cannot easily install CRX-files permanently from other sites
-3. clone Git repository (or save as [Zip-file](https://github.com/andre-st/chrome-injectjs/archive/master.zip))
+3. clone Git repository or [save as Zip-file](https://github.com/andre-st/chrome-injectjs/archive/master.zip)
 4. Chrome > Settings > Extensions > [x] Developer mode (upper right corner)
 5. Chrome > Settings > Extensions > click <kbd>Load unpacked extension</kbd> 
 6. browse to the source directory of the downloaded, unarchived release and confirm
