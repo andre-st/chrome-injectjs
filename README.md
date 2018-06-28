@@ -40,9 +40,3 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
 ## Feedback
 
 Use [GitHub](https://github.com/andre-st/chrome-injectjs/issues) or see [AUTHORS.md](AUTHORS.md) file
-
-
-## License
-
-Creative Commons BY-SA
-
