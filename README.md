@@ -21,7 +21,7 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
   
 - your mixin scripts run in the [context of the target website](https://developer.chrome.com/extensions/content_scripts#isolated_world)
   - so you can not just access its DOM, but its Javascript variables and functions too
-  - the targeted website cannot easily hijack the extension
+  - the targeted website cannot easily hijack your extension
   - everything outside mixin() runs in the context of the extension, with other privileges
 - no automatic updates, see Installation section
 - export/import = copy/paste the content of the text area
