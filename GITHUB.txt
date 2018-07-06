@@ -5,7 +5,7 @@ chrome-injectjs
 
 Description:
 
-Customize a remote website when there is no native setting. This extension injects custom Javascript on every visit.
+Customize a remote website when it doesn't offer a native setting and developers too busy. This extension injects your Javascript-based modifications on every visit.
 
 
 Website:
@@ -29,7 +29,9 @@ mixin
 mixins
 javascript-injection
 css-inject
-lightweight
 tiny
-trust
 paranoid
+trust
+lightweight
+remote
+stylish
