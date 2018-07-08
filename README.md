@@ -7,7 +7,7 @@ Customize a remote website when it doesn't offer a native setting.
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
 However, you give "sqdevil<span></span>@yandex.ru", "junkycoder" etc. full control over everything you read on the web. 
-Chrome content scripts can modify websites, e.g. [political](https://chrome.google.com/webstore/search/politics%20OR%20political%20OR%20activist%20OR%20activisim?hl=en&_category=extensions) content, and exfiltrate private information. So I made my own extension.
+Chrome content scripts can modify websites, e.g. [political](https://chrome.google.com/webstore/search/politics%20OR%20political%20OR%20activist%20OR%20activisim?hl=en&_category=extensions) content, and [exfiltrate](https://www.theregister.co.uk/2018/07/05/browsers_pull_stylish_but_invasive_browser_extension/) private information. So I made my own extension.
 
 
 ## Program Features and Screenshots
