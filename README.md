@@ -12,6 +12,7 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
 
 ## Program Features and Screenshots
 
+- no automatic updates (unlike [this](https://www.theregister.co.uk/2018/07/05/browsers_pull_stylish_but_invasive_browser_extension/) or [this](https://www.bleepingcomputer.com/news/security/-particle-chrome-extension-sold-to-new-dev-who-immediately-turns-it-into-adware/)), see Installation section
 - tiny, kept to the bare minimum = little maintenance
 - easy to inspect if you consider using it—no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files
 - it lacks any comfort and visual beauty: no syntax highlighting or validation (no Ace editor, jslint, ...); the browser console, however, proved sufficient for debugging
@@ -23,7 +24,6 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
   - so you can not just access its DOM, but its Javascript variables and functions too
   - the targeted website cannot easily hijack your extension
   - everything outside mixin() runs in the context of the extension, with other privileges
-- no automatic updates (unlike [this](https://www.theregister.co.uk/2018/07/05/browsers_pull_stylish_but_invasive_browser_extension/) or [this](https://www.bleepingcomputer.com/news/security/-particle-chrome-extension-sold-to-new-dev-who-immediately-turns-it-into-adware/)), see Installation section
 - export/import = copy/paste the content of the text area
 
 
