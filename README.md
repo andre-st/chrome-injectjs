@@ -2,12 +2,16 @@
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
 
-Customize a remote website when it doesn't offer a native setting.
+Customize a remote website when it doesn't offer a native setting and developers are busy.
 
 There are other and better code injection extensions, e.g.,
 [Dmitry Novikov's "User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
 However, you give "sqdevil<span></span>@yandex.ru", "junkycoder" etc. full control over everything you read on the web. 
 Chrome content scripts can modify websites, e.g. [political](https://chrome.google.com/webstore/search/politics%20OR%20political%20OR%20activist%20OR%20activisim?hl=en&_category=extensions) content, and [exfiltrate](https://www.theregister.co.uk/2018/07/05/browsers_pull_stylish_but_invasive_browser_extension/) private information. So I made my own extension.
+
+This extension also implements **URL redirection** functionality 
+(since Einar Egilsson's [Redirector](https://chrome.google.com/webstore/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd)
+started to demand content modification privileges which are not needed for redirection).
 
 
 ## Program Features and Screenshots
@@ -18,7 +22,7 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
 - it lacks any comfort and visual beauty: no syntax highlighting or validation (no Ace editor, jslint, ...); the browser console, however, proved sufficient for debugging
 - flexible and easy to extend due to its script-based configuration (rather than having a complex UI that tries to be as flexible as a programming language just use a programming language); you can add comments everywhere, too
 
-  ![Screenshot](image/screenshot-20180525.png)
+  ![Screenshot](image/screenshot-20180817.png)
   
 - your mixin scripts run in the [context of the target website](https://developer.chrome.com/extensions/content_scripts#isolated_world)
   - so you can not just access its DOM, but its Javascript variables and functions too

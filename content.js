@@ -2,6 +2,10 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 {
 	if( stored.mixinsState == "mixinsDisabledState" ) return;
 	
+	
+	function redir( theRegex, theReplace ) { /* implemented in background.js */ };
+	
+	
 	function mixin( theUrl, theCallback )
 	{
 		if( !location.href.startsWith( theUrl ) ) return;
@@ -16,8 +20,9 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 		s.textContent = "(" + theCallback + ")();";
 		( document.head || document.documentElement ).appendChild( s );
 		s.remove();
-	}
+	};
 	
-	eval( stored.mixinsScript );  // Script calls mixin() multiple times
+	
+	eval( stored.mixinsScript );  // Script calls mixin(), redir() multiple times
 });
 
