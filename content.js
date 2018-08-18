@@ -8,7 +8,7 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 	{
 		if( !location.href.startsWith( theUrl ) ) return;
 		
-		if( theOpts.runAsContentScript || false )  // More privileges, e.g., CORS doesn't matter
+		if( theOpts && (theOpts.runAsContentScript || false) )  // More privileges, e.g., CORS doesn't matter
 		{
 			theCallback();
 			return;
