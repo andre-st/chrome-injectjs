@@ -27,6 +27,7 @@ redir( /(https:\/\/www\.goodreads\.com\/work\/editions\/[^\?]*)\?*(.*)/,
 
 //
 //  AMAZON.DE WITH GOODREADS.COM RATINGS:
+//  Replaces Rubén Martínez's "Goodreads Ratings for Amazon" extension
 //
 mixin( "https://www.amazon.de/", () =>
 {

@@ -10,12 +10,12 @@ However, you give "sqdevil<span></span>@yandex.ru", "junkycoder" etc. full contr
 Chrome content scripts can modify websites, e.g. [political](https://chrome.google.com/webstore/search/politics%20OR%20political%20OR%20activist%20OR%20activisim?hl=en&_category=extensions) content, and [exfiltrate](https://www.theregister.co.uk/2018/07/05/browsers_pull_stylish_but_invasive_browser_extension/) private information. So I made my own extension.
 
 2. This extension also implements **URL redirection** functionality 
-(since Einar Egilsson's [Redirector](https://chrome.google.com/webstore/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd)
+(since Einar Egilsson's [Redirector extension](https://chrome.google.com/webstore/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd)
 started to demand content modification privileges which are not needed for redirection).
 
 3. You can use this extension to replace other smaller Chrome extensions such as 
 Rubén Martínez's ["Goodreads Ratings for Amazon"](https://chrome.google.com/webstore/detail/goodreads-ratings-for-ama/fkkcefhhadenobhjnngfdahhlodolkjg)
-by adding [a small function](script-example.js) to the mixins script.
+by adding [an equivalent function](script-example.js) to the mixins script.
 
 
 ## Program Features and Screenshots
