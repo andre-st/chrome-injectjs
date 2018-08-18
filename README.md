@@ -14,9 +14,8 @@ Chrome content scripts can modify websites, e.g. [political](https://chrome.goog
 started to demand content modification privileges which are not needed for redirection).
 
 3. You can use this extension to replace other smaller Chrome extensions such as 
-Rubén Martínez's ["Goodreads Ratings for Amazon"](https://chrome.google.com/webstore/detail/goodreads-ratings-for-ama/fkkcefhhadenobhjnngfdahhlodolkjg).
+Rubén Martínez's ["Goodreads Ratings for Amazon"](https://chrome.google.com/webstore/detail/goodreads-ratings-for-ama/fkkcefhhadenobhjnngfdahhlodolkjg)
 by adding [a small function](script-example.js) to the mixins script.
-The less extensions the better.
 
 
 ## Program Features and Screenshots
