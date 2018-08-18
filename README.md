@@ -10,7 +10,7 @@ However, you give "sqdevil<span></span>@yandex.ru", "junkycoder" etc. full contr
 Chrome _content scripts_ can modify websites, e.g. [political](https://chrome.google.com/webstore/search/politics%20OR%20political%20OR%20activist%20OR%20activisim?hl=en&_category=extensions) content, and [exfiltrate](https://www.theregister.co.uk/2018/07/05/browsers_pull_stylish_but_invasive_browser_extension/) 
 private information. So I made my own extension, which is small and easy to inspect if you consider using it.
 
-This extension also helps replace other smaller Chrome extensions such as 
+This extension also helps replace smaller Chrome extensions such as 
 Rubén Martínez's ["Goodreads Ratings for Amazon"](https://chrome.google.com/webstore/detail/goodreads-ratings-for-ama/fkkcefhhadenobhjnngfdahhlodolkjg)
 by adding [an equivalent function](script-example.js) to the mixins script.
 The fewer strangers fiddling with my browser, the better.
