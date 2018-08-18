@@ -17,7 +17,7 @@ extension started to demand content modification privileges which are not needed
 3. This extension helps replace other smaller Chrome extensions such as 
 Rubén Martínez's ["Goodreads Ratings for Amazon"](https://chrome.google.com/webstore/detail/goodreads-ratings-for-ama/fkkcefhhadenobhjnngfdahhlodolkjg)
 by adding [an equivalent function](script-example.js) to the mixins script.
-The less people fiddling with my browser the better.
+The fewer strangers fiddling with my browser, the better.
 
 
 ## Program Features and Screenshots
