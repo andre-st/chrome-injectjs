@@ -1,5 +1,6 @@
 
-var _redirRules = new Array();  // { regex: //, repl: '' }
+var _redirRules  = new Array();  // { regex: //, repl: '' }
+var _mixinsState = "mixinsEnabledState";
 
 
 function runMixinsScript( theScript )
@@ -22,15 +23,19 @@ function runMixinsScript( theScript )
 
 chrome.storage.onChanged.addListener( (changes,areaName) => 
 {
-	if( !( 'mixinsScript' in changes ) ) return;
-
-	runMixinsScript( changes.mixinsScript.newValue );
+	if( ( "mixinsState" in changes ) )
+		_mixinsState = changes.mixinsState.newValue;
+	
+	if( ( "mixinsScript" in changes ) )
+		runMixinsScript( changes.mixinsScript.newValue );
 });
 
 
 
 chrome.webRequest.onBeforeRequest.addListener( (details) =>
 {
+	if( _mixinsState == "mixinsDisabledState" ) return;
+	
 	const rule = _redirRules.find( r => details.url.match( r.regex ) );
 
 	if( !rule ) return {};
@@ -47,6 +52,8 @@ chrome.webRequest.onBeforeRequest.addListener( (details) =>
 
 chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 {
+	_mixinsState = stored.mixinsState || _mixinsState;
+	
 	runMixinsScript( stored.mixinsScript );
 });
 
