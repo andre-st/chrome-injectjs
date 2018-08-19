@@ -18,8 +18,8 @@ The fewer strangers fiddling with my browser, the better.
 
 ## Program Features and Screenshots
 
-- supports **URL redirections** (since I dropped Einar Egilsson's [Redirector](https://chrome.google.com/webstore/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd)
-  extension which recently demanded content privileges which are not needed for redirection)
+- supports **URL redirections** (I dropped Einar Egilsson's [Redirector](https://chrome.google.com/webstore/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd)
+  extension)
 - no automatic updates (unlike [this](https://www.theregister.co.uk/2018/07/05/browsers_pull_stylish_but_invasive_browser_extension/) 
   or [this adware buy-out](https://www.bleepingcomputer.com/news/security/-particle-chrome-extension-sold-to-new-dev-who-immediately-turns-it-into-adware/)), 
   see Installation section
