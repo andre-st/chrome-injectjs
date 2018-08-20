@@ -2,7 +2,7 @@
 
 ![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
 
-Customize a remote website when it doesn't offer a native setting and developers are busy.
+## Customize a remote website when it doesn't offer a native setting and developers are busy.
 
 There are prettier code injection extensions, e.g.,
 Dmitry Novikov's ["User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
