@@ -2,13 +2,22 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 {
 	if( stored.mixinsState == "mixinsDisabledState" ) return;
 	
+	// Use in mixins which run as content script in order to avoid XSS.
+	// ECMAScript provides URI percent-encoding routines only, 
+	// so we have to define our own:
+	function __htmlent( theStr )
+	{
+		return theStr.replace( /[\u00A0-\u99999<>\&]/gim, (i) => '&#' + i.charCodeAt( 0 ) + ';' );
+	}
+	
 	function redir( theRegex, theReplace ) { /* implemented in background.js */ };
 	
 	function mixin( theUrl, theCallback, theOpts )
 	{
 		if( !location.href.startsWith( theUrl ) ) return;
 		
-		if( theOpts && (theOpts.runAsContentScript || false) )  // More privileges, e.g., CORS doesn't matter
+		// Needs more privileges, e.g., if CORS issues:
+		if( theOpts && (theOpts.runAsContentScript || false) )  
 		{
 			theCallback();
 			return;

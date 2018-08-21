@@ -1,12 +1,22 @@
 // ======================= Extension Config Script ===========================
 // Synposis:
 //
-// mixin( "https://www.yoururl.de", () => { Your code here... } );
-// redir( /regex/, 'substitution with references $1, $2, ...' );
+//   mixin( url, code [, opts] );
+//
+//     url      Type: String      "https://www.yoururl.de" (startsWith)
+//     code     Type: Function    () => { Your Code... }
+//     opts     Type: Object      Properties: 
+//                                runAsContentScript    Type: Boolean    false
+//
+//   redir( expr, repl );
+//
+//     expr     Type: RegExp      URL to be matched: /https:\/\/www.../
+//     repl     Type: String      with $1, $2 capture group references
+//
 //
 // Helpers:
-// - https://www.regextester.com/
 //
+//   https://www.regextester.com/
 // ===========================================================================
 
 
@@ -27,37 +37,38 @@ redir( /(https:\/\/www\.goodreads\.com\/work\/editions\/[^\?]*)\?*(.*)/,
 
 //
 //  AMAZON.DE WITH GOODREADS.COM RATINGS:
-//  Replaces Rubén Martínez's "Goodreads Ratings for Amazon" extension
+//
+//  - replaces Rubén Martínez's "Goodreads Ratings for Amazon" extension
 //
 mixin( "https://www.amazon.de/", () =>
 {
-	const asin = (location.href.match( /\/dp\/([^\/]+)/ )  ||  ['', null])[1];
-	if( !asin ) return;
+	const asin = __htmlent( (location.href.match( /\/dp\/([^\/]+)/ )  ||  ['', ''])[1] );
+	if( asin.length == 0 ) return;
 
 	fetch( 'https://www.goodreads.com/book/isbn?isbn=' + asin )
 	.then( resp => resp.text() )  // sic!
 	.then( text =>
 	{
-		const url  = (text.match( /rel="canonical" href="([^"]+)/    )  ||  ['', '#'         ])[1];
-		const sumy = (text.match( /(\d+ ratings* and \d+ reviews*)/  )  ||  ['', 'no ratings'])[1];
-		const rstr = (text.match( /itemprop="ratingValue">([0-9.]+)/ )  ||  ['', '0'         ])[1];
+		const url  = __htmlent( (text.match( /rel="canonical" href="([^"]+)/    )  ||  ['', '#'         ])[1] );
+		const sumy = __htmlent( (text.match( /(\d+ ratings* and \d+ reviews*)/  )  ||  ['', 'no ratings'])[1] );
+		const rstr = __htmlent( (text.match( /itemprop="ratingValue">([0-9.]+)/ )  ||  ['', '0'         ])[1] );
 		const rint = Math.round( parseFloat( rstr ) );
-
+		
 		const rhtm = '<span style="color:red">'
 		           + '<span style="font-size:20px;letter-spacing:-2px">'
 		           + '&#9733;'.repeat(   rint )
 		           + '&#9734;'.repeat( 5-rint )
 		           + '</span> ' + rstr
 		           + '</span>';
-
+		
 		const amzDiv     = document.getElementById( 'cmrsSummary_feature_div' );
 		const ourDiv     = document.createElement( 'div' );
 		ourDiv.innerHTML = rhtm + ' &nbsp;&nbsp;&nbsp; <a href="' + url + '">' + sumy + '</a>';
-
+		
 		// Amazon loads stars async and replaces whole cmrsSummary div, thus:
 		amzDiv.parentNode.insertBefore( ourDiv, amzDiv.nextSibling );
 	});
-}, { runAsContentScript: true });  // CORS policy
+}, { runAsContentScript: true });
 
 
 

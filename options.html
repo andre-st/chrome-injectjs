@@ -24,21 +24,23 @@
 // ======================= Extension Config Script ===========================
 // Synposis:
 //
-//   mixin( "https://www.yoururl.de", () =&gt; { Your code... } [, options]);
+//   mixin( url, code [, opts] );
 //
-//   redir( /regex/, 'substitution with references $1, $2, ...' );
+//     url      Type: String      "https://www.yoururl.de" (startsWith)
+//     code     Type: Function    () =&gt; { Your Code... }
+//     opts     Type: Object      Properties: 
+//                                runAsContentScript    Type: Boolean    false
 //
+//   redir( expr, repl );
 //
-// MixinOptions:
-//
-//   runAsContentScript   Type: boolean   Enable if CORS issue, default: false
+//     expr     Type: RegExp      URL to be matched: /https:\/\/www.../
+//     repl     Type: String      with $1, $2 capture group references
 //
 //
 // Helpers:
 //
 //   https://www.regextester.com/
-//
-// ===========================================================================
+// ===========================================================================	
 </textarea>
 		
 		</fieldset>
