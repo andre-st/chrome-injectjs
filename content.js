@@ -5,7 +5,7 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 	// Use in mixins which run as content script in order to avoid XSS.
 	// ECMAScript provides URI percent-encoding routines only, 
 	// so we have to define our own:
-	function __htmlent( theStr )
+	function unxss( theStr )
 	{
 		return theStr.replace( /[\u00A0-\u99999<>\&]/gim, (i) => '&#' + i.charCodeAt( 0 ) + ';' );
 	}

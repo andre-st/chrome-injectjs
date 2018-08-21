@@ -42,16 +42,16 @@ redir( /(https:\/\/www\.goodreads\.com\/work\/editions\/[^\?]*)\?*(.*)/,
 //
 mixin( "https://www.amazon.de/", () =>
 {
-	const asin = __htmlent( (location.href.match( /\/dp\/([^\/]+)/ )  ||  ['', ''])[1] );
+	const asin = unxss( (location.href.match( /\/dp\/([^\/]+)/ )  ||  ['', ''])[1] );
 	if( asin.length == 0 ) return;
 
 	fetch( 'https://www.goodreads.com/book/isbn?isbn=' + asin )
 	.then( resp => resp.text() )  // sic!
 	.then( text =>
 	{
-		const url  = __htmlent( (text.match( /rel="canonical" href="([^"]+)/    )  ||  ['', '#'         ])[1] );
-		const sumy = __htmlent( (text.match( /(\d+ ratings* and \d+ reviews*)/  )  ||  ['', 'no ratings'])[1] );
-		const rstr = __htmlent( (text.match( /itemprop="ratingValue">([0-9.]+)/ )  ||  ['', '0'         ])[1] );
+		const url  = unxss( (text.match( /rel="canonical" href="([^"]+)/    )  ||  ['', '#'         ])[1] );
+		const sumy = unxss( (text.match( /(\d+ ratings* and \d+ reviews*)/  )  ||  ['', 'no ratings'])[1] );
+		const rstr = unxss( (text.match( /itemprop="ratingValue">([0-9.]+)/ )  ||  ['', '0'         ])[1] );
 		const rint = Math.round( parseFloat( rstr ) );
 		
 		const rhtm = '<span style="color:red">'
