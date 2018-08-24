@@ -51,14 +51,14 @@ mixin( "https://www.amazon.de/", () =>
 	{
 		const url  = unxss( (text.match( /rel="canonical" href="([^"]+)/    )  ||  ['', '#'         ])[1] );
 		const sumy = unxss( (text.match( /(\d+ ratings* and \d+ reviews*)/  )  ||  ['', 'no ratings'])[1] );
-		const rstr = unxss( (text.match( /itemprop="ratingValue">([0-9.]+)/ )  ||  ['', '0'         ])[1] );
-		const rint = Math.round( parseFloat( rstr ) );
+		const rstr =        (text.match( /itemprop="ratingValue">([0-9.]+)/ )  ||  ['', '0'         ])[1]  ;
+		const rint = Math.round( parseFloat( rstr ) );  // unxss() would encode decimal separator
 		
 		const rhtm = '<span style="color:red">'
 		           + '<span style="font-size:20px;letter-spacing:-2px">'
 		           + '&#9733;'.repeat(   rint )
 		           + '&#9734;'.repeat( 5-rint )
-		           + '</span> ' + rstr
+		           + '</span> ' + unxss( rstr )
 		           + '</span>';
 		
 		const amzDiv     = document.getElementById( 'cmrsSummary_feature_div' );
