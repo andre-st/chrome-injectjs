@@ -42,17 +42,17 @@ redir( /(https:\/\/www\.goodreads\.com\/work\/editions\/[^\?]*)\?*(.*)/,
 //
 mixin( "https://www.amazon.de/", () =>
 {
-	const asin = unxss( (location.href.match( /\/dp\/([^\/]+)/ )  ||  ['', ''])[1] );
+	const asin = (location.href.match( /\/dp\/([^\/]+)/ )  ||  ['', ''])[1];
 	if( asin.length == 0 ) return;
 
 	fetch( 'https://www.goodreads.com/book/isbn?isbn=' + asin )
 	.then( resp => resp.text() )  // sic!
 	.then( text =>
 	{
-		const url  = unxss( (text.match( /rel="canonical" href="([^"]+)/         )  ||  ['', '#'         ])[1] );
-		const sumy = unxss( (text.match( /([\d,]+ ratings* and [\d,]+ reviews*)/ )  ||  ['', 'no ratings'])[1] );
-		const rstr =        (text.match( /itemprop="ratingValue">([0-9.]+)/      )  ||  ['', '0'         ])[1]  ;
-		const rint = Math.round( parseFloat( rstr ) );  // unxss() would encode decimal separator
+		const url  = (text.match( /rel="canonical" href="([^"]+)/         )  ||  ['', '#'         ])[1];
+		const sumy = (text.match( /([\d,]+ ratings* and [\d,]+ reviews*)/ )  ||  ['', 'no ratings'])[1];
+		const rstr = (text.match( /itemprop="ratingValue">([0-9.]+)/      )  ||  ['', '0'         ])[1];
+		const rint = Math.round( parseFloat( rstr ) );  // unxss() would encode the decimal separator
 		
 		const rhtm = '<span style="color:red">'
 		           + '<span style="font-size:20px;letter-spacing:-2px">'
@@ -63,7 +63,7 @@ mixin( "https://www.amazon.de/", () =>
 		
 		const amzDiv     = document.getElementById( 'cmrsSummary_feature_div' );
 		const ourDiv     = document.createElement( 'div' );
-		ourDiv.innerHTML = rhtm + ' &nbsp;&nbsp;&nbsp; <a href="' + url + '">' + sumy + '</a>';
+		ourDiv.innerHTML = rhtm + ' &nbsp;&nbsp;&nbsp; <a href="' + unxss( url ) + '">' + unxss( sumy ) + '</a>';
 		
 		// Amazon loads stars async and replaces whole cmrsSummary div, thus:
 		amzDiv.parentNode.insertBefore( ourDiv, amzDiv.nextSibling );

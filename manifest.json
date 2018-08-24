@@ -4,7 +4,7 @@
  	"name"        : "Tiny Javascript Injector",
 	"short_name"  : "InjectJS",
 	"version"     : "0.3.0",
-	"version_name": "Release 2018-08-17",
+	"version_name": "Release 2018-08-24",
 	"description" : "Customize a remote website when there is no native setting",
 	"author"      : "andre-st",
 	"homepage_url": "https://github.com/andre-st/chrome-injectjs/blob/master/README.md",
