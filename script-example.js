@@ -42,7 +42,7 @@ redir( /(https:\/\/www\.goodreads\.com\/work\/editions\/[^\?]*)\?*(.*)/,
 //
 mixin( "https://www.amazon.de/", () =>
 {
-	const asin = (location.href.match( /\/dp\/([^\/]+)/ )  ||  ['', ''])[1];
+	const asin = (location.href.match( /\/(dp|gp\/product)\/([^\/]+)/ )  ||  ['', '', ''])[2];
 	if( asin.length == 0 ) return;
 
 	fetch( 'https://www.goodreads.com/book/isbn?isbn=' + asin )
@@ -63,7 +63,9 @@ mixin( "https://www.amazon.de/", () =>
 		
 		const amzDiv     = document.getElementById( 'cmrsSummary_feature_div' );
 		const ourDiv     = document.createElement( 'div' );
-		ourDiv.innerHTML = rhtm + ' &nbsp;&nbsp;&nbsp; <a href="' + unxss( url ) + '">' + unxss( sumy ) + '</a>';
+		ourDiv.innerHTML = rhtm + ' &nbsp;&nbsp;&nbsp; <a href="' 
+		                 + unxss( url  ) + '">' 
+		                 + unxss( sumy ) + '</a>';
 		
 		// Amazon loads stars async and replaces whole cmrsSummary div, thus:
 		amzDiv.parentNode.insertBefore( ourDiv, amzDiv.nextSibling );
