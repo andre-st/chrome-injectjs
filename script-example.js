@@ -49,9 +49,9 @@ mixin( "https://www.amazon.de/", () =>
 	.then( resp => resp.text() )  // sic!
 	.then( text =>
 	{
-		const url  = unxss( (text.match( /rel="canonical" href="([^"]+)/    )  ||  ['', '#'         ])[1] );
-		const sumy = unxss( (text.match( /(\d+ ratings* and \d+ reviews*)/  )  ||  ['', 'no ratings'])[1] );
-		const rstr =        (text.match( /itemprop="ratingValue">([0-9.]+)/ )  ||  ['', '0'         ])[1]  ;
+		const url  = unxss( (text.match( /rel="canonical" href="([^"]+)/         )  ||  ['', '#'         ])[1] );
+		const sumy = unxss( (text.match( /([\d,]+ ratings* and [\d,]+ reviews*)/ )  ||  ['', 'no ratings'])[1] );
+		const rstr =        (text.match( /itemprop="ratingValue">([0-9.]+)/      )  ||  ['', '0'         ])[1]  ;
 		const rint = Math.round( parseFloat( rstr ) );  // unxss() would encode decimal separator
 		
 		const rhtm = '<span style="color:red">'
