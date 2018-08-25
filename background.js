@@ -1,9 +1,10 @@
+"use strict";
+
 
 const REDIRABLE_URLS  = [ "http://*/*", "https://*/*" ];  // vs "<all_urls>"
 
 var _redirRules  = new Array();           // { regex: //, repl: '' }
 var _mixinsState = "mixinsEnabledState";  // First state if nothing saved
-
 
 
 function runMixinsScript( theScript )
@@ -21,7 +22,6 @@ function runMixinsScript( theScript )
 }
 
 
-
 chrome.storage.onChanged.addListener( (changes,areaName) => 
 {
 	if( ( "mixinsState" in changes ) )
@@ -30,7 +30,6 @@ chrome.storage.onChanged.addListener( (changes,areaName) =>
 	if( ( "mixinsScript" in changes ) )
 		runMixinsScript( changes.mixinsScript.newValue );
 });
-
 
 
 chrome.webRequest.onBeforeRequest.addListener( (details) =>
@@ -48,7 +47,6 @@ chrome.webRequest.onBeforeRequest.addListener( (details) =>
 	return { redirectUrl: newUrl };
 	
 }, { urls: REDIRABLE_URLS }, [ "blocking" ] );
-
 
 
 chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
