@@ -1,6 +1,9 @@
 
-var _redirRules  = new Array();  // { regex: //, repl: '' }
-var _mixinsState = "mixinsEnabledState";
+const REDIRABLE_URLS  = [ "http://*/*", "https://*/*" ];  // vs "<all_urls>"
+
+var _redirRules  = new Array();           // { regex: //, repl: '' }
+var _mixinsState = "mixinsEnabledState";  // First state if nothing saved
+
 
 
 function runMixinsScript( theScript )
@@ -10,10 +13,8 @@ function runMixinsScript( theScript )
 		_redirRules.push({ regex: theRegex, repl: theReplace });
 	};
 	
-	
 	function mixin( theUrl, theCallback ) { /* implemented in content.js */ };
 	
-
 	_redirRules.length = 0;
 	
 	eval( theScript );  // Script call redir(), mixin() multiple times
@@ -34,7 +35,7 @@ chrome.storage.onChanged.addListener( (changes,areaName) =>
 
 chrome.webRequest.onBeforeRequest.addListener( (details) =>
 {
-	if( _mixinsState == "mixinsDisabledState" ) return;
+	if( _mixinsState == "mixinsDisabledState" ) return {};
 	
 	const rule = _redirRules.find( r => details.url.match( r.regex ) );
 
@@ -46,7 +47,7 @@ chrome.webRequest.onBeforeRequest.addListener( (details) =>
 	
 	return { redirectUrl: newUrl };
 	
-}, { urls: [ "<all_urls>" ] }, [ "blocking" ] );
+}, { urls: REDIRABLE_URLS }, [ "blocking" ] );
 
 
 
