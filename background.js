@@ -7,6 +7,15 @@ var _redirRules  = new Array();           // { regex: //, repl: '' }
 var _mixinsState = "mixinsEnabledState";  // First state if nothing saved
 
 
+function setIconState( theState )
+{
+	chrome.browserAction.setIcon({ 
+			path: theState == "mixinsDisabledState"
+			                ? "image/icon16-disabled.png"
+			                : "image/icon16.png" });
+}
+
+
 function runMixinsScript( theScript )
 {
 	function redir( theRegex, theReplace )
@@ -24,10 +33,13 @@ function runMixinsScript( theScript )
 
 chrome.storage.onChanged.addListener( (changes,areaName) => 
 {
-	if( ( "mixinsState" in changes ) )
+	if( "mixinsState" in changes )
+	{
 		_mixinsState = changes.mixinsState.newValue;
+		setIconState( _mixinsState );
+	}
 	
-	if( ( "mixinsScript" in changes ) )
+	if( "mixinsScript" in changes )
 		runMixinsScript( changes.mixinsScript.newValue );
 });
 
@@ -52,7 +64,7 @@ chrome.webRequest.onBeforeRequest.addListener( (details) =>
 chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 {
 	_mixinsState = stored.mixinsState || _mixinsState;
-	
+	setIconState( _mixinsState );	
 	runMixinsScript( stored.mixinsScript );
 });
 

@@ -32,7 +32,7 @@
 
 	"background":
 	{
-		"scripts"   : [ "popup.js", "background.js" ],
+		"scripts"   : [ "background.js" ],
 		"persistent": true
 	},
 	
