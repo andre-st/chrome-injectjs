@@ -1,18 +1,27 @@
 /**
  * @file
- * @brief  Lightweight Chrome Extension UI utils library
  * @since  2018-05-25
  * 
  */
 
 "use strict";
 
+/**
+ * Lightweight Chrome Extension UI utils library
+ * @namespace
+ * @description
+ */
 const nsUI =
 {
-	/**
-	 * @param  string  CSS selector
-	 * @return void
-	 */
+	stateListeners: [],  /** Notified by setState(): Function(state) */
+	
+	
+	init: function( theCallback )
+	{
+		document.addEventListener( "DOMContentLoaded", theCallback );
+	},
+	
+	
 	elem: function( theSelector )
 	{
 		return document.querySelector( theSelector );
@@ -20,9 +29,9 @@ const nsUI =
 	
 	
 	/**
-	 * @param  string  CSS selector
-	 * @param  string  "click", "keydown" etc
-	 * @param  callback
+	 * @param  String    CSS selector
+	 * @param  String    "click", "keydown" etc
+	 * @param  Function  Event handler
 	 * @return void
 	 */
 	bind: function( theSelector, theEventName, theCallback )
@@ -34,22 +43,9 @@ const nsUI =
 	
 	
 	/**
-	 * @param  callback
-	 * @return void 
-	 */
-	init: function( theCallback )
-	{
-		document.addEventListener( "DOMContentLoaded", theCallback );
-	},
-	
-	
-	stateListeners: [],  // [callback(state),...]
-	
-	
-	/**
-	 * @param  string
-	 * @param  array of string
-	 * @param  string [optional]  CSS selector
+	 * @param  String    Any string included in the possible states parameter
+	 * @param  String[]  All possible states
+	 * @param  String    [optional]  CSS selector
 	 * @return void
 	 *
 	 * <pre> 
@@ -74,11 +70,6 @@ const nsUI =
 	},
 	
 	
-	/**
-	 * @param  string
-	 * @param  string  CSS selector
-	 * @return bool
-	 */
 	hasState: function( theState, theSelector )
 	{
 		const  e = nsUI.elem( theSelector || "body" );
@@ -86,10 +77,6 @@ const nsUI =
 	},
 	
 	
-	/**
-	 * @param  callback
-	 * @return void
-	 */
 	onCtrlS: function( theCallback )
 	{
 		nsUI.bind( "body", "keydown", event =>
@@ -107,8 +94,8 @@ const nsUI =
 	
 	
 	/**
-	 * @param  string  CSS selector
-	 * @param  object  { onInput: callback, canTabs: bool }
+	 * @param  String  CSS selector
+	 * @param  Object  { onInput: Function, canTabs: Boolean }
 	 * @return void
 	 */
 	tweakTextArea: function( theSelector, theOptions )
@@ -138,9 +125,6 @@ const nsUI =
 	},
 	
 	
-	/**
-	 * @return void
-	 */
 	openOptions: function()
 	{
 		window.open( chrome.runtime.getURL( "options.html" ) );
