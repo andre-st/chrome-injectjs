@@ -8,7 +8,7 @@
 //     url      string            "https://www.yoururl.de" (startsWith)
 //              string[]          [ "http://ex1.com", "http://ex2.de" ]
 //     code     function          ()=>{ Your Javascript Code... }
-//              template literal  ` #yourCssSelector { Attr: "value" } `
+//              template literal  ` #yourCssSelector { Attr: "string" } `
 //                                NOTE: Backticks for multiline strings!
 //     opts     Object            Properties:
 //                                runAsContentScript   Type: bool   false
