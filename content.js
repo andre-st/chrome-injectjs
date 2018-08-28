@@ -17,13 +17,11 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 	
 	function mixin( theUrls, theCode, theOpts )
 	{	
-		// One or multiple URLs given:
-		const urls = Array.isArray( theUrls ) ? theUrls : [ theUrls ];
+		const urls = Array.isArray( theUrls ) ? theUrls : [ theUrls ];  // Single URL as String?
 		
 		if( !urls.some( u => location.href.startsWith( u ) ) ) return;
 		
-		// Inject CSS:
-		if( typeof theCode === "string" || theCode instanceof String )
+		if( typeof theCode === "string" || theCode instanceof String )  // Inject CSS
 		{
 			const s = document.createElement( "STYLE" );
 			s.textContent = theCode;
@@ -31,8 +29,7 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 			return;
 		}
 		
-		// Inject ECMAScript:
-		if( typeof theCode === "function" )
+		if( typeof theCode === "function" )  // Inject ECMAScript:
 		{
 			// Content scripts and the website share the DOM but no JS functions.
 			// https://developer.chrome.com/extensions/content_scripts#isolated_world
