@@ -35,6 +35,13 @@ redir( /(https:\/\/www\.goodreads\.com\/work\/editions\/[^\?]*)\?*(.*)/,
 		'$1?expanded=true&$2&per_page=100' );
 
 
+// 
+//  WORDPRESS OLD EDITOR:
+//
+redir( /https:\/\/wordpress.com\/post\/([^\/]+)\/([0-9]+)/,
+		'https://$1/wp-admin/post.php?post=$2&action=edit' );
+
+
 //
 //  AMAZON.DE WITH GOODREADS.COM RATINGS:
 //
