@@ -3,7 +3,7 @@
 	
  	"name"        : "Tiny Javascript Injector",
 	"short_name"  : "InjectJS",
-	"version"     : "0.3.1",
+	"version"     : "0.4.0",
 	"version_name": "Release 2018-08-28",
 	"description" : "Customize a remote website, without consent",
 	"author"      : "andre-st",
