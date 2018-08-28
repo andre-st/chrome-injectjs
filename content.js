@@ -17,20 +17,21 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 	
 	function mixin( theUrls, theCode, theOpts )
 	{	
- 		var urls;  // One or multiple URLs given
+ 		var urls;  // One or multiple URLs given:
 		
 		if( typeof theUrls === "string" || theUrls instanceof String )
 			urls = [ theUrls ];
-			
-		if( Array.isArray( theUrls ) )
+		else if( Array.isArray( theUrls ) )
 			urls = theUrls;
-				
-		if( !urls || !urls.some( u => location.href.startsWith( u ) ) )
+		else
+			throw "Given URL neither string nor string-array";
+		
+		if( !urls.some( u => location.href.startsWith( u ) ) )
 			return;
 		
 		if( typeof theCode === "string" || theCode instanceof String )  // Inject CSS:
 		{
-			const s = document.createElement( "style" );
+			const s = document.createElement( "STYLE" );
 			s.textContent = theCode;
 			( document.head || document.documentElement ).appendChild( s );
 			return;
@@ -51,7 +52,7 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 				return;
 			}
 			
-			const s = document.createElement( "script" );
+			const s = document.createElement( "SCRIPT" );
 			s.textContent = "(" + theCode + ")();";
 			( document.head || document.documentElement ).appendChild( s );
 			s.remove();  // ??
