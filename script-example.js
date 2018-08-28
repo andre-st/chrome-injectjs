@@ -3,15 +3,23 @@
 //
 //   mixin( url, code [, opts] );
 //
-//     url      Type: String      "https://www.yoururl.de" (startsWith)
-//     code     Type: Function    () => { Your Code... }
-//     opts     Type: Object      Properties: 
-//                                runAsContentScript    Type: Boolean    false
+//     Param:   Type:             Examples etc:
+//     -------  ----------------  ----------------------------------------
+//     url      string            "https://www.yoururl.de" (startsWith)
+//              string[]          [ "http://ex1.com", "http://ex2.de" ]
+//     code     function          ()=>{ Your Javascript Code... }
+//              template literal  ` #yourCssSelector { Attr: "value" } `
+//                                NOTE: Backticks for multiline strings!
+//     opts     Object            Properties:
+//                                runAsContentScript   Type: bool   false
+//
 //
 //   redir( expr, repl );
 //
-//     expr     Type: RegExp      URL to be matched: /https:\/\/www.../
-//     repl     Type: String      with $1, $2 capture group references
+//     Param:   Type:             Examples etc:
+//     -------  ----------------  ----------------------------------------
+//     expr     RegExp            URL to be matched: /https:\/\/www.../
+//     repl     string            with $1, $2 capture group references
 //
 //
 // Helpers:
@@ -22,24 +30,22 @@
 
 
 //
-//  GOODREADS SHELVES VIEW-SETTINGS: 
+//  GOODREADS.COM 
 //
 redir( /(https:\/\/www\.goodreads\.com\/review\/list\/[^?]+)(?=(?:.*[?&](page=\d+))?)(?=(?:.*[?&](shelf=[^&]+))?)(.*)/,
-		'$1?per_page=100&sort=rating&order=d&view=covers&$2&$3' );
+	'$1?per_page=100&sort=rating&order=d&view=covers&$2&$3' );  // Shelf view settings
 
-
-//
-//  GOODREADS 'ALL EDITIONS' VIEW-SETTINGS: 
-//
 redir( /(https:\/\/www\.goodreads\.com\/work\/editions\/[^\?]*)\?*(.*)/,
-		'$1?expanded=true&$2&per_page=100' );
+	'$1?expanded=true&$2&per_page=100' );  // "All editions" view settings
 
 
-// 
-//  WORDPRESS OLD EDITOR:
+
+//
+//  WORDPRESS.COM
 //
 redir( /https:\/\/wordpress.com\/post\/([^\/]+)\/([0-9]+)/,
-		'https://$1/wp-admin/post.php?post=$2&action=edit' );
+	'https://$1/wp-admin/post.php?post=$2&action=edit' );  // Old editor
+
 
 
 //
@@ -84,10 +90,13 @@ mixin( "https://www.amazon.de/", () =>
 //
 //  MISC
 //
-mixin( "https://www.commafeed.com", () =>
-{
-	document.querySelector( "#toolbar-mark-read a.btn" ).style.width = "150px";
-});
+mixin( "https://www.commafeed.com", 
+`
+	#toolbar-mark-read a.btn
+	{
+		width: 150px;
+	}
+`);
 
 
 mixin( "https://yalebooks.yale.edu", () =>

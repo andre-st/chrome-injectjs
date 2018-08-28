@@ -28,21 +28,30 @@
 //
 //   mixin( url, code [, opts] );
 //
-//     url      Type: String      "https://www.yoururl.de" (startsWith)
-//     code     Type: Function    () =&gt; { Your Code... }
-//     opts     Type: Object      Properties: 
-//                                runAsContentScript    Type: Boolean    false
+//     Param:   Type:             Examples etc:
+//     -------  ----------------  ----------------------------------------
+//     url      string            "https://www.yoururl.de" (startsWith)
+//              string[]          [ "http://ex1.com", "http://ex2.de" ]
+//     code     function          ()=&gt;{ Your Javascript Code... }
+//              template literal  ` #yourCssSelector { Attr: "value" } `
+//                                NOTE: Backticks for multiline strings!
+//     opts     Object            Properties:
+//                                runAsContentScript   Type: bool   false
+//
 //
 //   redir( expr, repl );
 //
-//     expr     Type: RegExp      URL to be matched: /https:\/\/www.../
-//     repl     Type: String      with $1, $2 capture group references
+//     Param:   Type:             Examples etc:
+//     -------  ----------------  ----------------------------------------
+//     expr     RegExp            URL to be matched: /https:\/\/www.../
+//     repl     string            with $1, $2 capture group references
 //
 //
 // Helpers:
 //
 //   https://www.regextester.com/
 // ===========================================================================	
+
 </textarea>
 		
 		</fieldset>
