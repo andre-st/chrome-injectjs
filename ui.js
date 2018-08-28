@@ -82,8 +82,7 @@ const nsUI =
 		nsUI.bind( "body", "keydown", event =>
 		{
 			// CTRL+S habit to save current document
-			if( event.ctrlKey 
-			&&  event.which === 83 )
+			if( event.ctrlKey && event.which === 83 )
 			{
 				event.preventDefault();
 				theCallback();
@@ -108,14 +107,12 @@ const nsUI =
 			const ta = event.target;
 			
 			// Enable tabs for indentation (no native support)
-			if( theOptions.canTabs
-			&&  event.keyCode === 9 )
+			if( theOptions.canTabs && event.keyCode === 9 )
 			{
 				const p1 = ta.selectionStart;
 				const p2 = ta.selectionEnd;
-				ta.value = ta.value.substring( 0, p1 ) 
-				           + "\t" 
-				           + ta.value.substring( p2 );
+				ta.value = ta.value.substring( 0, p1 ) + "\t" 
+				         + ta.value.substring( p2    );
 				
 				ta.selectionStart = ta.selectionEnd = p1 + 1;
 				event.preventDefault();
