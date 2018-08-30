@@ -5,7 +5,7 @@ const MIXINS_STATES        = [ "mixinsEnabledState", "mixinsDisabledState" ];
 const MIXINS_DEFAULT_STATE =   "mixinsEnabledState";  // First run, nothing stored
 
 
-nsUI.init( () =>  // Popup script:
+nsUI.init( () =>
 {
 	nsUI.bind( "#btnOptions", "click", nsUI.openOptions );
 	
