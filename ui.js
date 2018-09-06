@@ -1,27 +1,53 @@
 /**
  * @file
- * @since  2018-05-25
+ * @since   2018-05-25
+ * @author  https://github.com/andre-st
+ *
+ * Note:
+ *   - doc-comments conventions: http://usejsdoc.org/
+ *   - members prefixed with an underscore are private members (_function, _attribute)
  * 
  */
 
 "use strict";
 
 /**
- * Lightweight Chrome Extension UI utils library
  * @namespace
- * @description
+ * @description Lightweight Chrome Extension UI utils library
  */
 const nsUI =
 {
-	stateListeners: [],  /** Notified by setState(): Function(state) */
+	/**
+	 * @callback stateCallback
+	 * @param    {string} theState - CSS classname, @see setState()
+	 * @return   {void}
+	 * @public
+	 */
 	
+	/**
+	 * @callback actionCallback
+	 * @return   {void}
+	 * @public
+	 */	
 	
+	stateListeners: [],  /** Notified by setState(): @see stateCallback */
+	
+	/**
+	 * @param  {actionCallback}  theCallback
+	 * @return {void}
+	 * @public
+	 */	
 	init: function( theCallback )
 	{
 		document.addEventListener( "DOMContentLoaded", theCallback );
 	},
 	
 	
+	/**
+	 * @param  {DOMString}  theSelector
+	 * @return {Element}
+	 * @public
+	 */	
 	elem: function( theSelector )
 	{
 		return document.querySelector( theSelector );
@@ -29,24 +55,26 @@ const nsUI =
 	
 	
 	/**
-	 * @param  String    CSS selector
-	 * @param  String    "click", "keydown" etc
-	 * @param  Function  Event handler
-	 * @return void
+	 * @param  {DOMString}     theSelector     - CSS selector
+	 * @param  {string}        theEventName    - DOM event type: "click", "keydown" etc
+	 * @param  {EventListener} theEventHandler - function which handles EventTarget
+	 * @return {void}
+	 * @public
 	 */
-	bind: function( theSelector, theEventName, theCallback )
+	bind: function( theSelector, theEventName, theEventHandler )
 	{
 		const a = document.querySelectorAll( theSelector );
 		for( var i = 0; i < a.length; i++ )
-			a[i].addEventListener( theEventName, theCallback );
+			a[i].addEventListener( theEventName, theEventHandler );
 	},
 	
 	
 	/**
-	 * @param  String    Any string included in the possible states parameter
-	 * @param  String[]  All possible states
-	 * @param  String    [optional]  CSS selector
-	 * @return void
+	 * @param  {string}    theState - Any string included in the possible states parameter
+	 * @param  {string[]}  thePossibleStates
+	 * @param  {DOMString} [theSelector] - CSS selector
+	 * @return {void}
+	 * @public
 	 *
 	 * <pre> 
 	 * .textChangedState #btnSave { background-color: yellow; }
@@ -70,6 +98,12 @@ const nsUI =
 	},
 	
 	
+	/**
+	 * @param  {string}    theState    - @see setState()
+	 * @param  {DOMString} theSelector - CSS selector
+	 * @return {boolean}
+	 * @public
+	 */	
 	hasState: function( theState, theSelector )
 	{
 		const  e = nsUI.elem( theSelector || "body" );
@@ -77,6 +111,11 @@ const nsUI =
 	},
 	
 	
+	/**
+	 * @param  {actionCallback} theCallback
+	 * @return {void}
+	 * @public
+	 */	
 	onCtrlS: function( theCallback )
 	{
 		nsUI.bind( "body", "keydown", event =>
@@ -93,9 +132,10 @@ const nsUI =
 	
 	
 	/**
-	 * @param  String  CSS selector
-	 * @param  Object  { onInput: Function, canTabs: Boolean }
-	 * @return void
+	 * @param  {DOMString} theSelector - CSS selector
+	 * @param  {Object}    theOptions  - { onInput: Function, canTabs: Boolean }
+	 * @return {void}
+	 * @public	 
 	 */
 	tweakTextArea: function( theSelector, theOptions )
 	{
@@ -122,6 +162,10 @@ const nsUI =
 	},
 	
 	
+	/**
+	 * @return {void}
+	 * @public
+	 */
 	openOptions: function()
 	{
 		window.open( chrome.runtime.getURL( "options.html" ) );
