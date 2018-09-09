@@ -6,8 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org)
 
 
 ## [0.4.0] - 2018-08-28
-
-### New:
+### Added:
 
 - pass multiple URLs to `mixin(...)`
 - inject CSS code instead of Javascript by passing a template literal to `mixin(...)`
@@ -15,8 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org)
 
 
 ## [0.3.0] - 2018-08-17
-
-### New:
+### Added:
 
 - redirect requests with `redir( ... )`
 
