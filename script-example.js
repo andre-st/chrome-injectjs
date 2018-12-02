@@ -40,6 +40,8 @@ redir( /(https:\/\/www\.goodreads\.com\/work\/editions\/[^\?]*)\?*(.*)/,
 
 
 
+
+
 //
 //  WORDPRESS.COM
 //
@@ -51,7 +53,7 @@ redir( /https:\/\/wordpress.com\/post\/([^\/]+)\/([0-9]+)/,
 //
 //  AMAZON.DE WITH GOODREADS.COM RATINGS:
 //
-//  - replaces Rubén Martínez's "Goodreads Ratings for Amazon" extension
+//  - replaces RubÃ©n MartÃ­nez's "Goodreads Ratings for Amazon" extension
 //
 mixin( "https://www.amazon.de/", () =>
 {
@@ -64,13 +66,13 @@ mixin( "https://www.amazon.de/", () =>
 	{
 		const url  = (text.match( /rel="canonical" href="([^"]+)/         )  ||  ['', '#'         ])[1];
 		const sumy = (text.match( /([\d,]+ ratings* and [\d,]+ reviews*)/ )  ||  ['', 'no ratings'])[1];
-		const rstr = (text.match( /itemprop="ratingValue">([0-9.]+)/      )  ||  ['', '0'         ])[1];
+		const rstr = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/   )  ||  ['', '0'         ])[1];
 		const rint = Math.round( parseFloat( rstr ) );  // unxss() would encode the decimal separator
 		
 		const rhtm = '<span style="color:red">'
 		           + '<span style="font-size:20px;letter-spacing:-2px">'
-		           + '&#9733;'.repeat(   rint )
-		           + '&#9734;'.repeat( 5-rint )
+		           + '&starf;'.repeat(   rint )
+		           + '&star;' .repeat( 5-rint )
 		           + '</span> ' + unxss( rstr )
 		           + '</span>';
 		
@@ -84,7 +86,6 @@ mixin( "https://www.amazon.de/", () =>
 		amzDiv.parentNode.insertBefore( ourDiv, amzDiv.nextSibling );
 	});
 }, { runAsContentScript: true });
-
 
 
 //
@@ -105,5 +106,6 @@ mixin( "https://yalebooks.yale.edu", () =>
 	if( div )
 		div.remove();
 });
+
 
 
