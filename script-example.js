@@ -64,10 +64,10 @@ mixin( "https://www.amazon.de/", () =>
 	.then( resp => resp.text() )  // sic!
 	.then( text =>
 	{
-		const url  = (text.match( /link href='([^']+)' rel='canonical'/    ) ||  ['', '#'])[1];
+		const url  = (text.match( /link href='([^']+)' rel='canonical'/        ) ||  ['', '#'])[1];
 		const nrat = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
 		const nrev = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
-		const rstr = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/    ) ||  ['', '0'])[1];
+		const rstr = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        ) ||  ['', '0'])[1];
 		const rint = Math.round( parseFloat( rstr ) );  // unxss() would encode the decimal separator
 		
 		const rhtm = '<span style="color:red">'
