@@ -51,6 +51,7 @@ const nsUI =
 	elem: function( theSelector )
 	{
 		return document.querySelector( theSelector );
+		// return [].slice.call( document.querySelectorAll( theSelector ));   elem().forEach(...
 	},
 	
 	
