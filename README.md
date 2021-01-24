@@ -1,6 +1,6 @@
 # Tiny Javascript Injector for Google Chrome
 
-![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)
+![Maintenance](https://img.shields.io/maintenance/yes/2021.svg)
 
 **Customize a remote website when it doesn't offer a native setting and developers are busy.**
 
