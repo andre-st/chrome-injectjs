@@ -70,7 +70,7 @@ mixin( "https://www.amazon.de/", () =>
 	
 	amzDiv.append( ourDiv, amzDiv.nextSibling );
 	
-	chrome.runtime.sendMessage({ contentScriptQuery: "fetch", url: 'https://www.goodreads.com/book/isbn?isbn=' + asin }, text =>
+	getUrl( 'https://www.goodreads.com/book/isbn?isbn=' + asin, text =>
 	{
 		const url   = (text.match( /link href='([^']+)' rel='canonical'/        ) ||  ['', '#'])[1];
 		const nrat  = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
