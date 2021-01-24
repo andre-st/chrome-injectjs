@@ -19,13 +19,9 @@
 //
 //
 //
-//   chrome.runtime.sendMessage( request, response => { ... });
+//   getUrl( url, text => { ... });
 //
-//       Request:                                        Response:          Comment:
-//       ----------------------------------------------  -----------------  --------------------------------------------
-//       { contentScriptQuery: "fetch", url: "..." }     string             HTML text of the given resource
-//
-//       NOTE: option runAsContentScript has be true
+//       NOTE: mixin-option runAsContentScript has to be true if used within mixin-code
 //
 //
 //

@@ -12,6 +12,15 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 	}
 	
 	
+	// Use in mixins to load cross-origin web resources without read blocking (CORB).
+	// Details see "fetch"-handler in background.js
+	// Expects the 'runAsContentScript' mixin-option set true.
+	function getUrl( theUrl, theCallback )
+	{
+		chrome.runtime.sendMessage({ contentScriptQuery: "fetch", url: theUrl }, theCallback );
+	}
+	
+	
 	function redir( theRegex, theReplace ) { /* implemented in background.js */ };
 	
 	
@@ -54,7 +63,7 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 		throw "Given code neither string nor function";
 	};
 	
-
+	
 	eval( stored.mixinsScript );  // Script calls mixin(), redir() multiple times
 	                              // and prints SyntaxError.message to console
 });
