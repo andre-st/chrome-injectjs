@@ -1,31 +1,39 @@
-// ======================= Extension Config Script ===========================
+// ============================================ Extension Config Script ================================================
 // Synposis:
 //
-//   mixin( url, code [, opts] );
+//   mixin( url, code [, opts: Object] );
 //
-//     Param:   Type:             Examples etc:
-//     -------  ----------------  ----------------------------------------
-//     url      string            "https://www.yoururl.de" (startsWith)
-//              string[]          [ "http://ex1.com", "http://ex2.de" ]
-//     code     function          ()=>{ Your Javascript Code... }
-//              template literal  ` #yourCssSelector { Attr: "string" } `
-//                                NOTE: Backticks for multiline strings!
-//     opts     Object            Properties:
-//                                runAsContentScript   Type: bool   false
+//       URL example:                              x  Code example:                   x  Opts example:
+//       ----------------------------------------     ------------------------------     -------------------------------
+//       "https://www.url1.de"                        ()=>{ ... }                        { runAsContentScript: false }
+//       [ "http://url1.com", "http://url2.com" ]     ` #selector { attr: "val" }`
 //
 //
-//   redir( expr, repl );
 //
-//     Param:   Type:             Examples etc:
-//     -------  ----------------  ----------------------------------------
-//     expr     RegExp            URL to be matched: /https:\/\/www.../
-//     repl     string            with $1, $2 capture group references
+//   redir( url: RegExp, newUrl: String );
+//
+//       URL example:                                 newUrl example:
+//       -------------------------------------------  ------------------------------------------------------------------
+//       /https:\/\/www\.url1\.de/                    "https://example.com"
+//       /(https:\/\/www\.url1\.de)/                  "$1?language=de"         ($1, $2, $n are capture group references)
 //
 //
-// Helpers:
 //
-//   https://www.regextester.com/
-// ===========================================================================
+//   chrome.runtime.sendMessage( request, response => { ... });
+//
+//       Request:                                        Response:          Comment:
+//       ----------------------------------------------  -----------------  --------------------------------------------
+//       { contentScriptQuery: "fetch", url: "..." }     string             HTML text of the given resource
+//
+//       NOTE: option runAsContentScript has be true
+//
+//
+//
+// Examples and Helpers:
+//   - https://github.com/andre-st/chrome-injectjs/blob/master/script-example.js
+//   - https://www.regextester.com/
+//
+// =====================================================================================================================
 
 
 
@@ -86,6 +94,39 @@ mixin( "https://www.amazon.de/", () =>
 	
 	
 }, { runAsContentScript: true });
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+//  Video sites etc should not notice invisible windows.
+//  They use this to force (ad-)watching when I just want listen to videos.
+//  
+//  Replaces the "Disable Page Visibility API" extension
+//  
+mixin( "https://www.servustv.com", () =>
+{
+	document.addEventListener( "visibilitychange", function( e ) 
+	{
+		e.stopImmediatePropagation();
+		
+	}, true, true);
+	
+	Object.defineProperty( Document.prototype.wrappedJSObject, "hidden", 
+	{
+		get         : exportFunction( function hidden() { return false; }, window.wrappedJSObject ),
+		enumerable  : true, 
+		configurable: true
+	});
+	
+	Object.defineProperty( Document.prototype.wrappedJSObject, "visibilityState", 
+	{
+		get         : exportFunction( function visibilityState() { return "visible"; }, window.wrappedJSObject ),
+		enumerable  : true, 
+		configurable: true
+	});
+});
 
 
 
