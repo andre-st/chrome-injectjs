@@ -59,10 +59,8 @@ mixin( "https://www.amazon.de/", () =>
 {
 	const asin = (location.href.match( /\/(dp|gp\/product)\/([^\/]+)/ )  ||  ['', '', ''])[2];
 	if( asin.length == 0 ) return;
-
-	fetch( 'https://www.goodreads.com/book/isbn?isbn=' + asin )
-	.then( resp => resp.text() )  // sic!
-	.then( text =>
+	
+	chrome.runtime.sendMessage({ contentScriptQuery: "fetch", url: 'https://www.goodreads.com/book/isbn?isbn=' + asin }, text =>
 	{
 		const url  = (text.match( /link href='([^']+)' rel='canonical'/        ) ||  ['', '#'])[1];
 		const nrat = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
@@ -77,15 +75,16 @@ mixin( "https://www.amazon.de/", () =>
 		           + '</span> ' + unxss( rstr )
 		           + '</span>';
 		
-		const amzDiv     = document.getElementById( 'cmrsSummary_feature_div' );
+		const amzDiv     = document.getElementById( 'averageCustomerReviews' );
 		const ourDiv     = document.createElement( 'div' );
 		ourDiv.innerHTML = rhtm + ' &nbsp;&nbsp;&nbsp; <a href="' 
 		                 + unxss( url  ) + '">' 
 		                 + unxss( nrat + " ratings and " + nrev + " reviews" ) + '</a>';
 		
-		// Amazon loads stars async and replaces whole cmrsSummary div, thus:
-		amzDiv.parentNode.insertBefore( ourDiv, amzDiv.nextSibling );
+		amzDiv.append( ourDiv, amzDiv.nextSibling );
 	});
+	
+	
 }, { runAsContentScript: true });
 
 

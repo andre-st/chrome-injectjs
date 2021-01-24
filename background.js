@@ -69,3 +69,19 @@ chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
 });
 
 
+chrome.runtime.onMessage.addListener( (request, sender, sendResponse) =>
+{
+	// To improve security, cross-origin fetches are disallowed from content scripts.
+	// Such requests can be made from extension background pages instead, 
+	// and relayed to content scripts when needed.
+	if( request.contentScriptQuery == "fetch" )
+	{
+		fetch ( request.url )
+		.then ( response => response.text()     )
+		.then ( text     => sendResponse( text ))
+		.catch( error    => console.log( error ))
+		return true;  // Will respond asynchronously
+	}
+});
+
+
