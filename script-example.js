@@ -68,31 +68,27 @@ mixin( "https://www.amazon.de/", () =>
 	const asin = (location.href.match( /\/(dp|gp\/product)\/([^\/]+)/ )  ||  ['', '', ''])[2];
 	if( asin.length == 0 ) return;
 	
+	const amzDiv     = document.getElementById( 'averageCustomerReviews' );
+	const ourDiv     = document.createElement( 'div' );
+	ourDiv.innerHTML = '<span style="font-weight: bold; background-color: #e68a00; color: #fff; padding: 0.25em 0.5em">GOODREADS LOADING</span>';
+	
+	amzDiv.append( ourDiv, amzDiv.nextSibling );
+	
 	chrome.runtime.sendMessage({ contentScriptQuery: "fetch", url: 'https://www.goodreads.com/book/isbn?isbn=' + asin }, text =>
 	{
-		const url  = (text.match( /link href='([^']+)' rel='canonical'/        ) ||  ['', '#'])[1];
-		const nrat = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
-		const nrev = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
-		const rstr = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        ) ||  ['', '0'])[1];
-		const rint = Math.round( parseFloat( rstr ) );  // unxss() would encode the decimal separator
+		const url   = (text.match( /link href='([^']+)' rel='canonical'/        ) ||  ['', '#'])[1];
+		const nrat  = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
+		const nrev  = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
+		const rstr  = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        ) ||  ['', '0'])[1];
+		const r     = parseFloat( rstr );  // unxss() would encode the decimal separator
+		const rint  = r % 1 >  0.6                 ? Math.ceil( r ) : Math.floor( r );
+		const rhalf = r % 1 >= 0.2 && r % 1 <= 0.6 ? '-5'           : '';  // frac via modulo
+		const rhtm  = '<i class="a-icon a-icon-star a-star-' + rint + rhalf + '"></i>';
 		
-		const rhtm = '<span style="color:red">'
-		           + '<span style="font-size:20px;letter-spacing:-2px">'
-		           + '&starf;'.repeat(   rint )
-		           + '&star;' .repeat( 5-rint )
-		           + '</span> ' + unxss( rstr )
-		           + '</span>';
-		
-		const amzDiv     = document.getElementById( 'averageCustomerReviews' );
-		const ourDiv     = document.createElement( 'div' );
 		ourDiv.innerHTML = rhtm + ' &nbsp;&nbsp;&nbsp; <a href="' 
 		                 + unxss( url  ) + '">' 
-		                 + unxss( nrat + " ratings and " + nrev + " reviews" ) + '</a>';
-		
-		amzDiv.append( ourDiv, amzDiv.nextSibling );
+		                 + unxss( nrat + " ratings and " + nrev + " reviews " ) + ' on Goodreads</a>';
 	});
-	
-	
 }, { runAsContentScript: true });
 
 
