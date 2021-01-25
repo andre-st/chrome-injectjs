@@ -61,27 +61,31 @@ redir( /https:\/\/wordpress.com\/post\/([^\/]+)\/([0-9]+)/,
 //
 mixin( "https://www.amazon.de/", () =>
 {
-	const asin = (location.href.match( /\/(dp|gp\/product)\/([^\/]+)/ )  ||  ['', '', ''])[2];
-	if( asin.length == 0 ) return;
+	const detDiv = document.getElementById( 'detailBullets_feature_div' );
+	if( !detDiv ) return;
+	
+	const isbn = ( detDiv.innerText.match( /ISBN-10.*?([0-9X\-]+)/ )  ||
+	               detDiv.innerText.match( /ISBN-13.*?([0-9X\-]+)/ )  ||  ['', '']  )[1];
+	
+	if( isbn.length == 0 ) return;
 	
 	const amzDiv     = document.getElementById( 'averageCustomerReviews' );
 	const ourDiv     = document.createElement( 'div' );
 	ourDiv.innerHTML = '<span style="font-weight: bold; background-color: #e68a00; color: #fff; padding: 0.25em 0.5em">GOODREADS LOADING</span>';
-	
 	amzDiv.append( ourDiv, amzDiv.nextSibling );
 	
-	getUrl( 'https://www.goodreads.com/book/isbn?isbn=' + asin, text =>
+	getUrl( 'https://www.goodreads.com/book/isbn?isbn=' + isbn, text =>
 	{
-		const url   = (text.match( /link href='([^']+)' rel='canonical'/        ) ||  ['', '#'])[1];
-		const nrat  = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
-		const nrev  = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ ) ||  ['', '0'])[1];
-		const rstr  = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        ) ||  ['', '0'])[1];
+		const url   = (text.match( /link href='([^']+)' rel='canonical'/        )  || ['', '#'])[1];
+		const nrat  = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ )  || ['', '0'])[1];
+		const nrev  = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ )  || ['', '0'])[1];
+		const rstr  = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        )  || ['', '0'])[1];
 		const r     = parseFloat( rstr );  // unxss() would encode the decimal separator
 		const rint  = r % 1 >  0.6                 ? Math.ceil( r ) : Math.floor( r );
 		const rhalf = r % 1 >= 0.2 && r % 1 <= 0.6 ? '-5'           : '';  // frac via modulo
 		const rhtm  = '<i class="a-icon a-icon-star a-star-' + rint + rhalf + '"></i>';
 		
-		ourDiv.innerHTML = rhtm + ' &nbsp;&nbsp;&nbsp; <a href="' 
+		ourDiv.innerHTML = rhtm + '<a style="margin-left: 2.75em" href="' 
 		                 + unxss( url  ) + '">' 
 		                 + unxss( nrat + " ratings and " + nrev + " reviews " ) + ' on Goodreads</a>';
 	});
