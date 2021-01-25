@@ -61,34 +61,60 @@ redir( /https:\/\/wordpress.com\/post\/([^\/]+)\/([0-9]+)/,
 //
 mixin( "https://www.amazon.de/", () =>
 {
-	const detDiv = document.getElementById( 'detailBullets_feature_div' );
-	if( !detDiv ) return;
+	// There are often e-book editions on Goodreads when there are no paper editions.
+	// The e-book ASIN isn't similar to ISBN, as opposed to the paper book ASIN.
 	
-	const isbn = ( detDiv.innerText.match( /ISBN-10.*?([0-9X\-]+)/ )  ||
-	               detDiv.innerText.match( /ISBN-13.*?([0-9X\-]+)/ )  ||  ['', '']  )[1];
+	const detailDiv  = document.getElementById( 'detailBullets_feature_div' );
+	const isbn10     = detailDiv && (detailDiv.innerText.match( /ISBN-10.*?([0-9X\-]+)/   ) || ['', ''])[1];
+	const isbn13     = detailDiv && (detailDiv.innerText.match( /ISBN-13.*?([0-9X\-]+)/   ) || ['', ''])[1];
+	const ebookUrl   = document.querySelector( 'a[href*="ebook/dp/"]' );
+	const ebookAsin  = ebookUrl && (ebookUrl.getAttribute( 'href' ).match( /dp\/([^\/]+)/ ) || ['', ''])[1];
+	const titleLong  = document.getElementById( 'productTitle' ).innerText;  // "Title (Publisher)" no GR search results
+	const title      = titleLong.match( /^[^(]+/ )[0];                       // "Title "
+	const altGoodUrl = 'https://www.goodreads.com/search?q=' + encodeURIComponent( title ) + '&search[field]=title';
 	
-	if( isbn.length == 0 ) return;
+	
+	// The Goodreads search engine doesn't support the logical operator 'or',
+	// and it doesn't try to get the ISBN-10 from ISBN-13 or vice versa. 
+	// So we have to query ISBN-10, ISBN-13 and e-book ASIN individually.
+	
+	const queryUrls = [];
+	if( isbn10    ) queryUrls.push( 'https://www.goodreads.com/book/isbn?isbn=' + isbn10    );
+	if( isbn13    ) queryUrls.push( 'https://www.goodreads.com/book/isbn?isbn=' + isbn13    );
+	if( ebookAsin ) queryUrls.push( 'https://www.goodreads.com/book/isbn?isbn=' + ebookAsin );
+	if( queryUrls.length == 0 ) return;  // Not a book or poorly catalogued
+	
+	
+	// Our area to display ratings:
+	// Our default text is the initial state and also the last state if our queries fail!
 	
 	const amzDiv     = document.getElementById( 'averageCustomerReviews' );
 	const ourDiv     = document.createElement( 'div' );
-	ourDiv.innerHTML = '<span style="font-weight: bold; background-color: #e68a00; color: #fff; padding: 0.25em 0.5em">GOODREADS LOADING</span>';
+	ourDiv.innerHTML = '<a href="' + altGoodUrl + '" style="color: #ec8c14; text-decoration: underline; font-weight: bold">Goodreads-Suche</a>';
 	amzDiv.append( ourDiv, amzDiv.nextSibling );
 	
-	getUrl( 'https://www.goodreads.com/book/isbn?isbn=' + isbn, text =>
+	
+	// Concurrent Goodreads queries result in better response time for user:
+	
+	var _bestNumRatings = -1;  // GR book might exist but 0 ratings
+	queryUrls.forEach( u => getUrl( u, text => 
 	{
-		const url   = (text.match( /link href='([^']+)' rel='canonical'/        )  || ['', '#'])[1];
-		const nrat  = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ )  || ['', '0'])[1];
-		const nrev  = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ )  || ['', '0'])[1];
-		const rstr  = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        )  || ['', '0'])[1];
+		const url   = (text.match( /meta content='([^']+)' property='og:url'/   ) || ['', '' ])[1];
+		const nrat  = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) || ['',  0 ])[1];
+		const nrev  = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ ) || ['',  0 ])[1];
+		const rstr  = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        ) || ['', '0'])[1];
 		const r     = parseFloat( rstr );  // unxss() would encode the decimal separator
-		const rint  = r % 1 >  0.6                 ? Math.ceil( r ) : Math.floor( r );
-		const rhalf = r % 1 >= 0.2 && r % 1 <= 0.6 ? '-5'           : '';  // frac via modulo
+		const rint  = r % 1 >  0.6                    ?  Math.ceil( r )  :  Math.floor( r );  // frac via modulo
+		const rhalf = r % 1 >= 0.2  &&  r % 1 <= 0.6  ?  '-5'            :  '';
 		const rhtm  = '<i class="a-icon a-icon-star a-star-' + rint + rhalf + '"></i>';
 		
-		ourDiv.innerHTML = rhtm + '<a style="margin-left: 2.75em" href="' 
-		                 + unxss( url  ) + '">' 
+		if( !url || _bestNumRatings >= nrat ) return;  // Only query-result with most ratings
+		_bestNumRatings = nrat;
+		
+		ourDiv.innerHTML = rhtm + '<a style="margin-left: 2.75em" href="'
+		                 + unxss( url ) + '">' 
 		                 + unxss( nrat + " ratings and " + nrev + " reviews " ) + ' on Goodreads</a>';
-	});
+	}));
 }, { runAsContentScript: true });
 
 
