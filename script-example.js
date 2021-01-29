@@ -103,11 +103,11 @@ mixin( "https://www.amazon.de/", () =>
 	{
 		const url     = (text.match( /meta content='([^']+)' property='og:url'/   ) || ['', '' ])[1];
 		const  ratstr = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        ) || ['', '0'])[1];
-		const nratstr = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) || ['',  0 ])[1];
-		const nrevstr = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ ) || ['',  0 ])[1];
-		const nrat    = parseInt  ( nratstr );
-		const nrev    = parseInt  ( nrevstr );
-		const r       = parseFloat( ratstr  );
+		const nratstr = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) || ['', '0'])[1];
+		const nrevstr = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ ) || ['', '0'])[1];
+		const r       = parseFloat(  ratstr ) || 0;
+		const nrat    = parseInt  ( nratstr ) || 0;
+		const nrev    = parseInt  ( nrevstr ) || 0;
 		const rint    = r % 1 >  0.6                    ?  Math.ceil( r )  :  Math.floor( r );  // frac via modulo
 		const rhalf   = r % 1 >= 0.2  &&  r % 1 <= 0.6  ?  '-5'            :  '';
 		const rhtm    = '<i class="a-icon a-icon-star a-star-' + rint + rhalf + '"></i>';
