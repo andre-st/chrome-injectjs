@@ -88,9 +88,11 @@ mixin( "https://www.amazon.de/", () =>
 	// Our area to display ratings:
 	// Our default text is the initial state and also the last state if our queries fail!
 	
+	const amzLangElm = document.querySelector( '[data-language]' );  // May differ from the browser settings (for me)
+	const amzLang    = amzLangElm && amzLangElm.getAttribute( 'data-language' ) || undefined;
 	const amzDiv     = document.getElementById( 'averageCustomerReviews' );
 	const ourDiv     = document.createElement( 'div' );
-	ourDiv.innerHTML = '<a href="' + altGoodUrl + '" style="color: #ec8c14; text-decoration: underline; font-weight: bold">Goodreads-Suche</a>';
+	ourDiv.innerHTML = '<a href="' + altGoodUrl + '" style="color: #ec8c14; text-decoration: underline; font-weight: bold">Goodreads-Search</a>';
 	amzDiv.append( ourDiv, amzDiv.nextSibling );
 	
 	
@@ -99,21 +101,25 @@ mixin( "https://www.amazon.de/", () =>
 	var _bestNumRatings = -1;  // GR book might exist but 0 ratings
 	queryUrls.forEach( u => getUrl( u, text => 
 	{
-		const url   = (text.match( /meta content='([^']+)' property='og:url'/   ) || ['', '' ])[1];
-		const nrat  = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) || ['',  0 ])[1];
-		const nrev  = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ ) || ['',  0 ])[1];
-		const rstr  = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        ) || ['', '0'])[1];
-		const r     = parseFloat( rstr );  // unxss() would encode the decimal separator
-		const rint  = r % 1 >  0.6                    ?  Math.ceil( r )  :  Math.floor( r );  // frac via modulo
-		const rhalf = r % 1 >= 0.2  &&  r % 1 <= 0.6  ?  '-5'            :  '';
-		const rhtm  = '<i class="a-icon a-icon-star a-star-' + rint + rhalf + '"></i>';
+		const url     = (text.match( /meta content='([^']+)' property='og:url'/   ) || ['', '' ])[1];
+		const  ratstr = (text.match( /itemprop="ratingValue">\s*([0-9.]+)/        ) || ['', '0'])[1];
+		const nratstr = (text.match( /itemprop="ratingCount" content="([0-9.]+)"/ ) || ['',  0 ])[1];
+		const nrevstr = (text.match( /itemprop="reviewCount" content="([0-9.]+)"/ ) || ['',  0 ])[1];
+		const nrat    = parseInt  ( nratstr );
+		const nrev    = parseInt  ( nrevstr );
+		const r       = parseFloat( ratstr  );
+		const rint    = r % 1 >  0.6                    ?  Math.ceil( r )  :  Math.floor( r );  // frac via modulo
+		const rhalf   = r % 1 >= 0.2  &&  r % 1 <= 0.6  ?  '-5'            :  '';
+		const rhtm    = '<i class="a-icon a-icon-star a-star-' + rint + rhalf + '"></i>';
 		
 		if( !url || _bestNumRatings >= nrat ) return;  // Only query-result with most ratings
 		_bestNumRatings = nrat;
 		
-		ourDiv.innerHTML = rhtm + '<a style="margin-left: 2.75em" href="'
-		                 + unxss( url ) + '">' 
-		                 + unxss( nrat + " ratings and " + nrev + " reviews " ) + ' on Goodreads</a>';
+		// More or less language-neutral strings due to Locales, just Anglicisms:
+		ourDiv.innerHTML = rhtm + '<a style="margin-left: 37px" href="' 
+		                 + unxss( url )                   + '">'
+		                 + nrat.toLocaleString( amzLang ) + ' Goodreads-Ratings, '
+		                 + nrev.toLocaleString( amzLang ) + ' Reviews</a>';
 	}));
 }, { runAsContentScript: true });
 
