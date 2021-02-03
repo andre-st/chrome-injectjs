@@ -32,13 +32,13 @@
 	
 	"background":
 	{
-		"scripts"   : [ "background.js" ],
+		"scripts"   : [ "settings.js", "background.js" ],
 		"persistent": true
 	},
 	
 	"content_scripts": 
 	[{ 
-		"js"        : [ "content.js" ],
+		"js"        : [ "settings.js", "content.js" ],
 		"matches"   : [ "<all_urls>" ],
 		"all_frames": false,
 		"run_at"    : "document_end"

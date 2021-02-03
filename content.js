@@ -1,4 +1,4 @@
-chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
+nsSettings.get([ "mixinsScript", "mixinsState" ], stored =>
 {
 	if( stored.mixinsState == "mixinsDisabledState" ) return;
 	

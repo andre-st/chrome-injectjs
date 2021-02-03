@@ -31,7 +31,7 @@ function runMixinsScript( theScript )
 }
 
 
-chrome.storage.onChanged.addListener( (changes,areaName) => 
+nsSettings.addChangeListener( changes =>
 {
 	if( "mixinsState" in changes )
 	{
@@ -61,7 +61,7 @@ chrome.webRequest.onBeforeRequest.addListener( (details) =>
 }, { urls: REDIRABLE_URLS }, [ "blocking" ] );
 
 
-chrome.storage.sync.get( ["mixinsScript", "mixinsState"], stored =>
+nsSettings.get([ "mixinsScript", "mixinsState" ], stored =>
 {
 	_mixinsState = stored.mixinsState || _mixinsState;
 	setIconState( _mixinsState );	

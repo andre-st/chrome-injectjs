@@ -15,15 +15,14 @@ nsUI.init( () =>
 	nsUI.bind( "#btnSave", "click", event => 
 	{
 		const script = nsUI.elem( "#scriptarea" ).value;
-		chrome.storage.sync.set({ "mixinsScript": script },
-				() => nsUI.setState( "editorSavedState", EDITOR_STATES ) );
+		nsSettings.set({ "mixinsScript": script }, () => nsUI.setState( "editorSavedState", EDITOR_STATES ));
 	});
 	
 	nsUI.onCtrlS( () => nsUI.elem( "#btnSave" ).click() );
 	
-	chrome.storage.sync.get( ["mixinsScript"], stored => 
+	nsSettings.get([ "mixinsScript" ], stored =>
 	{
-		if( stored.mixinsScript )
+		if( stored.mixinsScript )  // Don't overwrite initial synopsis text
 			nsUI.elem( "#scriptarea" ).value = stored.mixinsScript;
 	});
 });

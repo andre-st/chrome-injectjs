@@ -15,11 +15,11 @@ nsUI.init( () =>
 				? "mixinsDisabledState" 
 				: "mixinsEnabledState";
 		
-		chrome.storage.sync.set({ "mixinsState": newState },
-				() => nsUI.setState( newState, MIXINS_STATES ) );
+		nsSettings.set({ "mixinsState": newState },
+				() => nsUI.setState( newState, MIXINS_STATES ));
 	});
 	
-	chrome.storage.sync.get( ["mixinsState"], 
-			r => nsUI.setState( r.mixinsState || MIXINS_DEFAULT_STATE, MIXINS_STATES ) );
+	nsSettings.get([ "mixinsState" ], 
+			r => nsUI.setState( r.mixinsState || MIXINS_DEFAULT_STATE, MIXINS_STATES ));
 });
 
