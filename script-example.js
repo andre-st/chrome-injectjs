@@ -89,8 +89,8 @@ mixin( "https://www.amazon.de/", () =>
 	// Our default text is the initial state and also the last state if our queries fail!
 	
 	const amzLangElm = document.querySelector( '[data-language]' );  // May differ from the browser settings (for me)
-	const amzLang    = amzLangElm && amzLangElm.getAttribute( 'data-language' ) || undefined;
-	const amzDiv     = document.getElementById( 'averageCustomerReviews' );
+	const amzLang    = amzLangElm && amzLangElm.getAttribute( 'data-language' ) || undefined;  // "de-DE"
+	const amzDiv     = document.getElementById( 'averageCustomerReviews_feature_div' );
 	const ourDiv     = document.createElement( 'div' );
 	ourDiv.innerHTML = '<a href="' + altGoodUrl + '" style="color: #ec8c14; text-decoration: underline; font-weight: bold">Goodreads-Search</a>';
 	amzDiv.append( ourDiv, amzDiv.nextSibling );
