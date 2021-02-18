@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.6.0] - 2021-02-18
+### Fixed:
+- sample script 'Goodreads ratings on Amazon'
+
+### Added:
+- browser-action icon turns green if one of your mixins was injected into the active webpage
+
 
 ## [0.5.0] - 2021-02-03
 ### Fixed:
