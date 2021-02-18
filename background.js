@@ -9,16 +9,20 @@ var   _mixinsState = "mixinsEnabledState";  // First state if nothing saved
 
 
 
-function setIconState( theState )
+function updateIconState()
 {
-	const pathFor = { 
-		"mixinsEnabledState" : "image/icon16.png",
-		"mixinsDisabledState": "image/icon16-disabled.png",
-		"mixinsInjectedState": "image/icon16-injected.png"
-	};
-	
-	if( pathFor[theState] )
-		chrome.browserAction.setIcon({ path: pathFor[theState] });
+	chrome.tabs.query({ currentWindow: true, active: true }, tabs =>
+	{
+		var path;
+		if( _mixinsState == "mixinsDisabledState" )
+			path = "image/icon16-disabled.png"
+		else if( _mixinUrls.some( u => tabs[0].url.startsWith( u )))
+			path = "image/icon16-injected.png"
+		else
+			path = "image/icon16.png";
+		
+		chrome.browserAction.setIcon({ path: path });
+	});
 }
 
 
@@ -38,6 +42,7 @@ function runMixinsScript( theScript )
 	_mixinUrls.length  = 0;
 	
 	eval( theScript );  // Script call redir(), mixin() multiple times
+	updateIconState();
 }
 
 
@@ -46,7 +51,7 @@ nsSettings.addChangeListener( changes =>
 	if( "mixinsState" in changes )
 	{
 		_mixinsState = changes.mixinsState.newValue;
-		setIconState( _mixinsState );
+		updateIconState();
 	}
 	
 	if( "mixinsScript" in changes )
@@ -54,16 +59,8 @@ nsSettings.addChangeListener( changes =>
 });
 
 
-chrome.tabs.onActivated.addListener( info =>  // .tabId, .windowId
-{
-	if( _mixinsState == "mixinsDisabledState" ) return;
-	
-	chrome.tabs.query({ currentWindow: true, active: true }, tabs =>
-	{
-		setIconState( _mixinUrls.some( u => tabs[0].url.startsWith( u )) 
-				? "mixinsInjectedState" : "mixinsEnabledState" );
-	});
-});
+chrome.tabs   .onActivated   .addListener( info => updateIconState() );
+chrome.windows.onFocusChanged.addListener( info => updateIconState() );
 
 
 chrome.webRequest.onBeforeRequest.addListener( details =>
@@ -86,7 +83,6 @@ chrome.webRequest.onBeforeRequest.addListener( details =>
 nsSettings.get([ "mixinsScript", "mixinsState" ], stored =>
 {
 	_mixinsState = stored.mixinsState || _mixinsState;
-	setIconState( _mixinsState );	
 	runMixinsScript( stored.mixinsScript );
 });
 
