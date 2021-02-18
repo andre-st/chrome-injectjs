@@ -28,7 +28,7 @@ nsSettings.get([ "mixinsScript", "mixinsState" ], stored =>
 	{	
 		const urls = Array.isArray( theUrls ) ? theUrls : [ theUrls ];  // Single URL as String?
 		
-		if( !urls.some( u => location.href.startsWith( u ) ) ) return;
+		if( !urls.some( u => location.href.startsWith( u ))) return;
 		
 		if( typeof theCode === "string" || theCode instanceof String )  // Inject CSS
 		{

@@ -59,8 +59,8 @@ nsSettings.addChangeListener( changes =>
 });
 
 
-chrome.tabs   .onActivated   .addListener( info => updateIconState() );
-chrome.windows.onFocusChanged.addListener( info => updateIconState() );
+chrome.tabs   .onActivated   .addListener( updateIconState );
+chrome.windows.onFocusChanged.addListener( updateIconState );
 
 
 chrome.webRequest.onBeforeRequest.addListener( details =>
