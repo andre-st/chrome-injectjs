@@ -69,7 +69,7 @@ mixin( "https://www.amazon.", () =>
 	const ebookUrl     = document.querySelector( 'div:not(.celwidget) a[href*="ebook/dp/"]' );
 	const ebookAsin    = ebookUrl && (ebookUrl.getAttribute( 'href' ).match( /dp\/([^\/]+)/ ) || ['', ''])[1];
 	const titleLongTag = document.getElementById( 'productTitle' );                      // "Title: Subtitle (Publisher)" no GR search results
-	const title        = titleLongTag ? titleLong.innerText.match( /^[^(:]+/ )[0] : '';  // "Title "
+	const title        = titleLongTag ? titleLongTag.innerText.match( /^[^(:]+/ )[0] : '';  // "Title "
 	const altGoodUrl   = 'https://www.goodreads.com/search?q=' + encodeURIComponent( title ) + '&search[field]=title';
 	
 	
