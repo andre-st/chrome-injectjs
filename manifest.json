@@ -10,7 +10,7 @@
 	"homepage_url": "https://github.com/andre-st/chrome-injectjs/blob/master/README.md",
 	
 	"offline_enabled"       : true,
-	"permissions"           : [ "storage", "webRequest", "webRequestBlocking", "http://*/", "https://*/" ],
+	"permissions"           : [ "storage", "webRequest", "tabs", "webRequestBlocking", "http://*/", "https://*/" ],
 	"minimum_chrome_version": "24",
 	
 	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",

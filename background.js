@@ -3,16 +3,22 @@
 
 const REDIRABLE_URLS  = [ "http://*/*", "https://*/*" ];  // vs "<all_urls>"
 
-var _redirRules  = new Array();           // { regex: //, repl: '' }
-var _mixinsState = "mixinsEnabledState";  // First state if nothing saved
+const _redirRules  = new Array();           // { regex: //, repl: '' }
+const _mixinUrls   = new Array();           // String
+var   _mixinsState = "mixinsEnabledState";  // First state if nothing saved
+
 
 
 function setIconState( theState )
 {
-	chrome.browserAction.setIcon({ 
-			path: theState == "mixinsDisabledState"
-			                ? "image/icon16-disabled.png"
-			                : "image/icon16.png" });
+	const pathFor = { 
+		"mixinsEnabledState" : "image/icon16.png",
+		"mixinsDisabledState": "image/icon16-disabled.png",
+		"mixinsInjectedState": "image/icon16-injected.png"
+	};
+	
+	if( pathFor[theState] )
+		chrome.browserAction.setIcon({ path: pathFor[theState] });
 }
 
 
@@ -23,9 +29,13 @@ function runMixinsScript( theScript )
 		_redirRules.push({ regex: theRegex, repl: theReplace });
 	};
 	
-	function mixin( theUrl, theCallback ) { /* implemented in content.js */ };
+	function mixin( theUrl, theCallback )
+	{ 
+		_mixinUrls.push( theUrl );
+	};
 	
 	_redirRules.length = 0;
+	_mixinUrls.length  = 0;
 	
 	eval( theScript );  // Script call redir(), mixin() multiple times
 }
@@ -44,16 +54,28 @@ nsSettings.addChangeListener( changes =>
 });
 
 
-chrome.webRequest.onBeforeRequest.addListener( (details) =>
+chrome.tabs.onActivated.addListener( info =>  // .tabId, .windowId
+{
+	if( _mixinsState == "mixinsDisabledState" ) return;
+	
+	chrome.tabs.query({ currentWindow: true, active: true }, tabs =>
+	{
+		setIconState( _mixinUrls.some( u => tabs[0].url.startsWith( u )) 
+				? "mixinsInjectedState" : "mixinsEnabledState" );
+	});
+});
+
+
+chrome.webRequest.onBeforeRequest.addListener( details =>
 {
 	if( _mixinsState == "mixinsDisabledState" ) return {};
 	
 	const rule = _redirRules.find( r => details.url.match( r.regex ) );
-
+	
 	if( !rule ) return {};
-
+	
 	const newUrl = details.url.replace( rule.regex, rule.repl );
-
+	
 	if( newUrl == details.url ) return {};
 	
 	return { redirectUrl: newUrl };
