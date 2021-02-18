@@ -52,26 +52,25 @@ redir( /https:\/\/wordpress.com\/post\/([^\/]+)\/([0-9]+)/,
 
 
 
-
 //////////////////////////////////////////////////////////////////////////////
 //
-//  AMAZON.DE WITH GOODREADS.COM RATINGS:
+//  AMAZON.DE WITH GOODREADS.COM RATINGS
 //
-//  Replaces Rubén Martínez's "Goodreads Ratings for Amazon" extension.
+//  Replaces Ruben Martinez's "Goodreads Ratings for Amazon" extension.
 //
-mixin( "https://www.amazon.de/", () =>
+mixin( "https://www.amazon.", () =>
 {
 	// There are often e-book editions on Goodreads when there are no paper editions.
 	// The e-book ASIN isn't similar to ISBN, as opposed to the paper book ASIN.
 	
-	const detailDiv  = document.getElementById( 'detailBullets_feature_div' );
-	const isbn10     = detailDiv && (detailDiv.innerText.match( /ISBN-10.*?([0-9X\-]+)/   ) || ['', ''])[1];
-	const isbn13     = detailDiv && (detailDiv.innerText.match( /ISBN-13.*?([0-9X\-]+)/   ) || ['', ''])[1];
-	const ebookUrl   = document.querySelector( 'a[href*="ebook/dp/"]' );
-	const ebookAsin  = ebookUrl && (ebookUrl.getAttribute( 'href' ).match( /dp\/([^\/]+)/ ) || ['', ''])[1];
-	const titleLong  = document.getElementById( 'productTitle' ).innerText;  // "Title (Publisher)" no GR search results
-	const title      = titleLong.match( /^[^(]+/ )[0];                       // "Title "
-	const altGoodUrl = 'https://www.goodreads.com/search?q=' + encodeURIComponent( title ) + '&search[field]=title';
+	const detailDiv    = document.getElementById( 'detailBullets_feature_div' );
+	const isbn10       = detailDiv && (detailDiv.innerText.match( /ISBN-10.*?([0-9X\-]+)/   ) || ['', ''])[1];
+	const isbn13       = detailDiv && (detailDiv.innerText.match( /ISBN-13.*?([0-9X\-]+)/   ) || ['', ''])[1];
+	const ebookUrl     = document.querySelector( 'div:not(.celwidget) a[href*="ebook/dp/"]' );
+	const ebookAsin    = ebookUrl && (ebookUrl.getAttribute( 'href' ).match( /dp\/([^\/]+)/ ) || ['', ''])[1];
+	const titleLongTag = document.getElementById( 'productTitle' );                      // "Title: Subtitle (Publisher)" no GR search results
+	const title        = titleLongTag ? titleLong.innerText.match( /^[^(:]+/ )[0] : '';  // "Title "
+	const altGoodUrl   = 'https://www.goodreads.com/search?q=' + encodeURIComponent( title ) + '&search[field]=title';
 	
 	
 	// The Goodreads search engine doesn't support the logical operator 'or',
@@ -122,7 +121,6 @@ mixin( "https://www.amazon.de/", () =>
 		                 + nrev.toLocaleString( amzLang ) + ' Reviews</a>';
 	}));
 }, { runAsContentScript: true });
-
 
 
 
