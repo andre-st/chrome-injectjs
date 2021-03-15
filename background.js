@@ -60,6 +60,7 @@ nsSettings.addChangeListener( changes =>
 
 
 chrome.tabs   .onActivated   .addListener( updateIconState );
+chrome.tabs   .onUpdated     .addListener( updateIconState );
 chrome.windows.onFocusChanged.addListener( updateIconState );
 
 
