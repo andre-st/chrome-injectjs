@@ -14,7 +14,7 @@ private information. So I made my own extension, which is small and easy to insp
 
 This extension also helps replace smaller Chrome extensions such as 
 Rubén Martínez's ["Goodreads Ratings for Amazon"](https://chrome.google.com/webstore/detail/goodreads-ratings-for-ama/fkkcefhhadenobhjnngfdahhlodolkjg)
-by adding [an equivalent function](script-example.js) to the mixins script.
+by adding [an equivalent function](https://gist.github.com/andre-st/592825fe9a5b2eafc5a73feb80ade649) to the mixins script.
 The fewer strangers fiddling with my browser, the better.
 
 
@@ -28,7 +28,11 @@ The fewer strangers fiddling with my browser, the better.
 - tiny, kept to the bare minimum = little maintenance
 - easy to inspect if you consider using it -- no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files
 - it lacks any comfort and visual beauty: no syntax highlighting or validation (no Ace editor, jslint, ...); the browser console, however, proved sufficient for debugging
-- inject CSS or Javascript (see [sample script](script-example.js))
+- inject CSS or Javascript, for example:
+	- [Force consistent Goodreads.com view settings](https://gist.github.com/andre-st/71c824fd1e8b61e6e29af2a962c60956)
+	- [Show Goodreads.com ratings on Amazon](https://gist.github.com/andre-st/592825fe9a5b2eafc5a73feb80ade649)
+	- [Price-filter for Amazon wishlists](https://gist.github.com/andre-st/ae556e9966738a5b3d7d2ff773196207)
+	- Bypass paywall of your local newspaper
 - flexible and easy to extend due to its script-based configuration (rather than having a complex UI that tries to be as flexible as a programming language just use a programming language); you can add comments everywhere, too
 
   ![Screenshot](image/screenshot-20180817.png)
