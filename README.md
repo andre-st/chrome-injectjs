@@ -33,6 +33,7 @@ The fewer strangers fiddling with my browser, the better.
 	- [Show Goodreads.com ratings on Amazon](https://gist.github.com/andre-st/592825fe9a5b2eafc5a73feb80ade649)
 	- [Price-filter for Amazon wishlists](https://gist.github.com/andre-st/ae556e9966738a5b3d7d2ff773196207)
 	- Bypass paywall of your local newspaper
+	- [more scripts](https://gist.github.com/search?q=user%3Aandre-st+%23injectjs)
 - flexible and easy to extend due to its script-based configuration (rather than having a complex UI that tries to be as flexible as a programming language just use a programming language); you can add comments everywhere, too
 
   ![Screenshot](image/screenshot-20180817.png)
