@@ -27,11 +27,11 @@
 // ============================================ Extension Config Script ================================================
 // Synposis:
 //
-//   mixin( url, code [, opts: Object] );
+//   mixin( url, code [, options: Object] );
 //
-//       URL example:                              x  Code example:                   x  Opts example:
+//       URL example:                              x  Code example:                   x  Options example:
 //       ----------------------------------------     ------------------------------     -------------------------------
-//       "https://www.url1.de"                        ()=&gt;{ ... }                        { runAsContentScript: false }
+//       "https://www.url1.de"                        ()=&gt;{ ... }                        { runAsContentScript: true }
 //       [ "http://url1.com", "http://url2.com" ]     ` #selector { attr: "val" }`
 //
 //
@@ -45,9 +45,10 @@
 //
 //
 //
-//   getUrl( url, text =&gt; { ... });
-//
-//       NOTE: mixin-option runAsContentScript has to be true if used within mixin-code
+//   API within Mixin-code                            Mixin-options required
+//   -----------------------------------------------  ------------------------------------------------------------------
+//   getUrl ( url, text =&gt; { ... })                   { runAsContentScript: true }
+//   saveUrl( url                 )                   { runAsContentScript: true }
 //
 //
 //
