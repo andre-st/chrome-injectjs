@@ -3,9 +3,10 @@
 All notable changes to this project will be documented in this file.
 
 
-## [0.7.0] - 2021-10-20
+## [0.8.0] - 2021-10-20
 ### Added:
 - saveUrl() allows your mixin-code to trigger the download dialog for any resource with an URL
+- simple text auto-completion with <kbd>Ctrl</kbd>+<kbd>Space</kbd> (too annoying without tabs and auto-completion)
 
 
 ## [0.6.0] - 2021-02-18
