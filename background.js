@@ -93,7 +93,7 @@ chrome.runtime.onMessage.addListener( (request, sender, sendResponse) =>
 	// To improve security, cross-origin fetches are disallowed from content scripts.
 	// Such requests can be made from extension background pages instead, 
 	// and relayed to content scripts when needed.
-	if( request.contentScriptQuery == "fetch" )
+	if( request.contentScriptQuery == "getUrl" )
 	{
 		fetch ( request.url )
 		.then ( response => response.text()     )

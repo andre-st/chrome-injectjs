@@ -17,7 +17,8 @@ nsSettings.get([ "mixinsScript", "mixinsState" ], stored =>
 	// Expects the 'runAsContentScript' mixin-option set true.
 	function getUrl( theUrl, theCallback )
 	{
-		chrome.runtime.sendMessage({ contentScriptQuery: "fetch", url: theUrl }, theCallback );
+		chrome.runtime.sendMessage({ contentScriptQuery: "getUrl", url: theUrl }, theCallback );
+	}
 	
 	
 	// Details see "download'-handler in background.js
