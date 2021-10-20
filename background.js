@@ -68,7 +68,7 @@ chrome.webRequest.onBeforeRequest.addListener( details =>
 {
 	if( _mixinsState == "mixinsDisabledState" ) return {};
 	
-	const rule = _redirRules.find( r => details.url.match( r.regex ) );
+	const rule = _redirRules.find( r => details.url.match( r.regex ));
 	
 	if( !rule ) return {};
 	
@@ -78,7 +78,7 @@ chrome.webRequest.onBeforeRequest.addListener( details =>
 	
 	return { redirectUrl: newUrl };
 	
-}, { urls: REDIRABLE_URLS }, [ "blocking" ] );
+}, { urls: REDIRABLE_URLS }, [ "blocking" ]);
 
 
 nsSettings.get([ "mixinsScript", "mixinsState" ], stored =>
