@@ -137,34 +137,34 @@ const nsUI =
 	 * @return {void}
 	 * @public
 	 */
-	autocomplete: function( theTextarea )  // Good enoguh auto-complete (just the previous keyword-variant)
+	autocomplete: function( theTextArea )  // Good enough auto-complete (just the previous keyword-variant)
 	{
 		const isLetter   = x => x.toLowerCase() != x.toUpperCase();
 		const isStopChar = x => !isLetter( x );
-		const kwEnd      = theTextarea.selectionStart;
+		const kwEnd      = theTextArea.selectionStart;
 		var   kwStart    = kwEnd - 1;
 		var   keyword    = "";
 		var   completion = "";           // Just the remainder
 		
 		for(; kwStart > 0; kwStart-- )   // Backwards from cursor position
 		{
-			const c = theTextarea.value.charAt( kwStart );
+			const c = theTextArea.value.charAt( kwStart );
 			if( isStopChar( c )) break;
 			keyword = c + keyword;
 		}
 		
-		const matchStart = theTextarea.value.lastIndexOf( keyword, kwStart - 1 );
-		for( var matchEnd = matchStart + keyword.length; matchEnd < theTextarea.value.length; matchEnd++ )
+		const matchStart = theTextArea.value.lastIndexOf( keyword, kwStart - 1 );
+		for( var matchEnd = matchStart + keyword.length; matchEnd < theTextArea.value.length; matchEnd++ )
 		{
-			const c = theTextarea.value.charAt( matchEnd );
+			const c = theTextArea.value.charAt( matchEnd );
 			if( isStopChar( c )) break;
 			completion += c;
 		}
 		
 		if( completion.length > 30 ) return;  // Something went wrong?
 		
-		theTextarea.value        = theTextarea.value.substring( 0, kwEnd ) + completion + theTextarea.value.substring( kwEnd );
-		theTextarea.selectionEnd = theTextarea.selectionStart = kwEnd + completion.length;  // Set cursor
+		theTextArea.value        = theTextArea.value.substring( 0, kwEnd ) + completion + theTextArea.value.substring( kwEnd );
+		theTextArea.selectionEnd = theTextArea.selectionStart = kwEnd + completion.length;  // Set cursor
 	},
 	
 	
@@ -185,7 +185,7 @@ const nsUI =
 			
 			// Enable text autcompletion with [CTRL]+[SPACE] keys.
 			// Unfortunately, vim-like [CTRL]+[N] is already taken by the browser.
-			if( theOptions.canAutocomplete &&  event.ctrlKey && event.keyCode === 32 )
+			if( theOptions.canAutocomplete && event.ctrlKey && event.keyCode === 32 )
 			{
 				nsUI.autocomplete( ta );
 				event.preventDefault();
