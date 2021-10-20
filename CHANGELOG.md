@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.7.0] - 2021-10-20
+### Added:
+- saveUrl() allows your mixin-code to trigger the download dialog for any resource with an URL
+
+
 ## [0.6.0] - 2021-02-18
 ### Fixed:
 - sample script 'Goodreads ratings on Amazon'
