@@ -13,7 +13,7 @@ nsSettings.get([ "mixinsScript", "mixinsState" ], stored =>
 	
 	
 	// Use in mixins to load cross-origin web resources without read blocking (CORB).
-	// Details see "fetch"-handler in background.js
+	// Details see "getUrl"-handler in background.js
 	// Expects the 'runAsContentScript' mixin-option set true.
 	function getUrl( theUrl, theCallback )
 	{
@@ -21,7 +21,8 @@ nsSettings.get([ "mixinsScript", "mixinsState" ], stored =>
 	}
 	
 	
-	// Details see "download'-handler in background.js
+	// Use in mixins to trigger the download dialog for a web resource from any origin.
+	// Details see "saveUrl"-handler in background.js
 	// Expects the 'runAsContentScript' mixin-option set true.
 	function saveUrl( theUrl, theCallback )
 	{
