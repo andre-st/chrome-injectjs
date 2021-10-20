@@ -16,7 +16,7 @@ function updateIconState()
 		var path;
 		if( _mixinsState == "mixinsDisabledState" )
 			path = "image/icon16-disabled.png"
-		else if( _mixinUrls.some( u => tabs[0].url.startsWith( u )))
+		else if( tabs && tabs.length > 0 && _mixinUrls.some( u => tabs[0].url.startsWith( u )))
 			path = "image/icon16-injected.png"
 		else
 			path = "image/icon16.png";
