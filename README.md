@@ -27,7 +27,7 @@ The fewer strangers fiddling with my browser, the better.
   see Installation section
 - tiny, kept to the bare minimum = little maintenance
 - easy to inspect if you consider using it -- no 3rd party libs, nothing [minified](https://en.wikipedia.org/wiki/Minification_(programming)), small files
-- apart from tabs for indentation, <kbd>Ctrl</kbd>+<kbd>S</kbd> and simple autocompletion via <kbd>Ctrl</kbd>+<kbd>Space</kbd>, it lacks any comfort and visual beauty: no syntax highlighting or validation (no Ace editor, jslint, ...); the browser console, however, proved sufficient for debugging
+- apart from <kbd>Tab</kbd> for indentation, <kbd>Ctrl</kbd>+<kbd>S</kbd> and simple autocompletion via <kbd>Ctrl</kbd>+<kbd>Space</kbd>, it lacks any comfort and visual beauty: no syntax highlighting or validation (no Ace editor, jslint, ...); the browser console, however, proved sufficient for debugging
 - inject CSS or Javascript, for example:
 	- [Force consistent Goodreads.com view settings](https://gist.github.com/andre-st/71c824fd1e8b61e6e29af2a962c60956)
 	- [Show Goodreads.com ratings on Amazon](https://gist.github.com/andre-st/592825fe9a5b2eafc5a73feb80ade649)
