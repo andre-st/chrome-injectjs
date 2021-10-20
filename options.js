@@ -8,8 +8,9 @@ nsUI.init( () =>
 {
 	nsUI.tweakTextArea( "#scriptarea", 
 	{
-		canTabs: true,
-		onInput: () => nsUI.setState( "editorChangedState", EDITOR_STATES )
+		canTabs:         true,
+		canAutocomplete: true,
+		onInput:         () => nsUI.setState( "editorChangedState", EDITOR_STATES )
 	});
 	
 	nsUI.bind( "#btnSave", "click", event => 

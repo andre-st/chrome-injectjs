@@ -133,10 +133,46 @@ const nsUI =
 	
 	
 	/**
-	 * @param  {DOMString} theSelector - CSS selector
-	 * @param  {Object}    theOptions  - { onInput: Function, canTabs: Boolean }
+	 * @param  {HTMLTextAreaElement}  DOM element with the word at cursor position to complete
 	 * @return {void}
-	 * @public	 
+	 * @public
+	 */
+	autocomplete: function( theTextarea )  // Good enoguh auto-complete (just the previous keyword-variant)
+	{
+		const isLetter   = x => x.toLowerCase() != x.toUpperCase();
+		const isStopChar = x => !isLetter( x );
+		const kwEnd      = theTextarea.selectionStart;
+		var   kwStart    = kwEnd - 1;
+		var   keyword    = "";
+		var   completion = "";           // Just the remainder
+		
+		for(; kwStart > 0; kwStart-- )   // Backwards from cursor position
+		{
+			const c = theTextarea.value.charAt( kwStart );
+			if( isStopChar( c )) break;
+			keyword = c + keyword;
+		}
+		
+		const matchStart = theTextarea.value.lastIndexOf( keyword, kwStart - 1 );
+		for( var matchEnd = matchStart + keyword.length; matchEnd < theTextarea.value.length; matchEnd++ )
+		{
+			const c = theTextarea.value.charAt( matchEnd );
+			if( isStopChar( c )) break;
+			completion += c;
+		}
+		
+		if( completion.length > 30 ) return;  // Something went wrong?
+		
+		theTextarea.value        = theTextarea.value.substring( 0, kwEnd ) + completion + theTextarea.value.substring( kwEnd );
+		theTextarea.selectionEnd = theTextarea.selectionStart = kwEnd + completion.length;  // Set cursor
+	},
+	
+	
+	/**
+	 * @param  {DOMString} theSelector - CSS selector
+	 * @param  {Object}    theOptions  - { onInput: Function, canTabs: Boolean, canAutocomplete: Boolean }
+	 * @return {void}
+	 * @public
 	 */
 	tweakTextArea: function( theSelector, theOptions )
 	{
@@ -146,6 +182,15 @@ const nsUI =
 		nsUI.bind( theSelector, "keydown", event =>
 		{
 			const ta = event.target;
+			
+			// Enable text autcompletion with [CTRL]+[SPACE] keys.
+			// Unfortunately, vim-like [CTRL]+[N] is already taken by the browser.
+			if( theOptions.canAutocomplete &&  event.ctrlKey && event.keyCode === 32 )
+			{
+				nsUI.autocomplete( ta );
+				event.preventDefault();
+				return false;
+			}
 			
 			// Enable tabs for indentation (no native support)
 			if( theOptions.canTabs && event.keyCode === 9 )
