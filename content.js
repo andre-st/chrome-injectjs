@@ -26,7 +26,7 @@ nsSettings.get([ "mixinsScript", "mixinsState" ], stored =>
 	// Expects the 'runAsContentScript' mixin-option set true.
 	function saveUrl( theUrl, theCallback )
 	{
-		const absUrl = new URL( theUrl, document.baseURI ).href;  // Always absolute URL
+		const absUrl = new URL( theUrl, document.baseURI ).href;  // Absolute URL required
 		chrome.runtime.sendMessage({ contentScriptQuery: "saveUrl", url: absUrl }, theCallback );
 	}
 	
