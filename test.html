@@ -11,16 +11,28 @@
 	</head>
 	<body>
 		<div id="testdiv1">
-		</div>	
-	
-	
+		</div>
+		
+		
 		<script>
 			function testB()
 			{
 				alert( "testB" );
 			}
+			
+			
+			setTimeout( function()
+			{
+				const w = "Warning: Extension could be hijacked by targeted website!";
+				
+				try{  mixin( '', () => {} );  alert( w );  } catch( e ){  console.log( e );  }
+				try{  redir( /abc/, '' );     alert( w );  } catch( e ){  console.log( e );  }
+				try{  getUrl( '' );           alert( w );  } catch( e ){  console.log( e );  }
+				try{  saveUrl( '' );          alert( w );  } catch( e ){  console.log( e );  }
+				
+			}, 2000 );
+			
+			
 		</script>
-	
-	
 	</body>
 </html>
