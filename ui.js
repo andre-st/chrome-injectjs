@@ -231,7 +231,7 @@ const nsUI =
 	 */
 	openOptions: function()
 	{
-		window.open( chrome.runtime.getURL( "options.html" ) );
+		window.open( chrome.runtime.getURL( "options.html" ));
 	}
 }
 
