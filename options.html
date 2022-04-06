@@ -27,29 +27,18 @@
 // ============================================ Extension Config Script ================================================
 // Synposis:
 //
-//   mixin( url, code [, options: Object] );
+//   mixin(  "https://www.url1.de",                   ()=&gt;{ ... },               { runAsContentScript: true });
+//   mixin([ "http://url1.com", "http://url2.com" ],  ` #selector { attr: "val" }`                              );
 //
-//       URL example:                              x  Code example:                   x  Options example:
-//       ----------------------------------------     ------------------------------     -------------------------------
-//       "https://www.url1.de"                        ()=&gt;{ ... }                        { runAsContentScript: true }
-//       [ "http://url1.com", "http://url2.com" ]     ` #selector { attr: "val" }`
-//
+//   redir( /https:\/\/www\.url1\.de/,                "https://example.com" );
+//   redir( /(https:\/\/www\.url1\.de)/,              "$1?language=de"      );  // $1, $2, $3 (capture) group references
 //
 //
-//   redir( url: RegExp, newUrl: String );
-//
-//       URL example:                                 newUrl example:
-//       -------------------------------------------  ------------------------------------------------------------------
-//       /https:\/\/www\.url1\.de/                    "https://example.com"
-//       /(https:\/\/www\.url1\.de)/                  "$1?language=de"         ($1, $2, $n are capture group references)
-//
-//
-//
-//   API within Mixin-code                            Mixin-options required
+//   Helpers inside Mixin code:                       Mixin-options required
 //   -----------------------------------------------  ------------------------------------------------------------------
-//   getUrl ( url, text =&gt; { ... })                   { runAsContentScript: true }
-//   saveUrl( url                 )                   { runAsContentScript: true }
-//
+//   getUrl ( url: string, text =&gt; { ... })           { runAsContentScript: true }
+//   saveUrl( url: string                 )           { runAsContentScript: true }
+//   unxss  ( txt: string                 )
 //
 //
 // Examples and Helpers:
