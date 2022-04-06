@@ -168,6 +168,22 @@ const nsUI =
 	
 	
 	/**
+	 * @param  {HTMLTextAreaElement}  DOM element with the text to indent at the cursor position
+	 * @return {void}
+	 * @public
+	 */
+	indentText: function( theTextArea )  // Currently just adds tabs (more than native TA does)
+	{
+		const p1 = theTextArea.selectionStart;
+		const p2 = theTextArea.selectionEnd;
+		theTextArea.value = theTextArea.value.substring( 0, p1 ) + "\t" 
+		                  + theTextArea.value.substring( p2    );
+		
+		theTextArea.selectionStart = theTextArea.selectionEnd = p1 + 1;
+	},
+	
+	
+	/**
 	 * @param  {DOMString} theSelector - CSS selector
 	 * @param  {Object}    theOptions  - { onInput: Function, canTabs: Boolean, canAutocomplete: Boolean }
 	 * @return {void}
@@ -194,12 +210,7 @@ const nsUI =
 			// Enable tabs for indentation (no native support)
 			if( theOptions.canTabs && event.keyCode === 9 )
 			{
-				const p1 = ta.selectionStart;
-				const p2 = ta.selectionEnd;
-				ta.value = ta.value.substring( 0, p1 ) + "\t" 
-				         + ta.value.substring( p2    );
-				
-				ta.selectionStart = ta.selectionEnd = p1 + 1;
+				nsUI.indentText( ta );
 				event.preventDefault();
 				return false;
 			}
