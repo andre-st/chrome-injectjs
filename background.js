@@ -102,6 +102,7 @@ chrome.runtime.onMessage.addListener( (request, sender, sendResponse) =>
 		return true;  // Will respond asynchronously
 	}
 	
+	// sendResponse callback with { downloadId=undefined } on error
 	if( request.contentScriptQuery == "saveUrl" )
 	{
 		chrome.downloads.download({ url: request.url }, sendResponse );
