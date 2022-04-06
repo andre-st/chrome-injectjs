@@ -90,12 +90,11 @@ const nsUI =
 		const a = document.querySelectorAll( theSelector || "body" );
 		for( var i = 0; i < a.length; i++ )
 		{
-			var cn = a[i].className;
-			thePossibleStates.forEach( s => cn = cn.replace( s, '' ) );  // Removes prev state
-			a[i].className = cn + ' ' + theState;
+			a[i].classList.remove( ...thePossibleStates );   // Removes prev state
+			a[i].classList.add( theState );
 		}
 		
-		nsUI.stateListeners.forEach( l => l( theState ) );
+		nsUI.stateListeners.forEach( l => l( theState ));
 	},
 	
 	
@@ -108,7 +107,7 @@ const nsUI =
 	hasState: function( theState, theSelector )
 	{
 		const  e = nsUI.elem( theSelector || "body" );
-		return e ? e.className.includes( theState ) : false;
+		return e ? e.classList.contains( theState ) : false;
 	},
 	
 	
