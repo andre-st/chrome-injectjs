@@ -1,6 +1,6 @@
 # Tiny Javascript Injector for Google Chrome
 
-![Maintenance](https://img.shields.io/maintenance/yes/2021.svg)
+![Maintenance](https://img.shields.io/maintenance/yes/2022.svg)
 
 **Customize a remote website when it doesn't offer a native setting and developers are busy.**
 
@@ -30,7 +30,7 @@ The fewer strangers fiddling with my browser, the better.
 - apart from <kbd>Tab</kbd> for indentation, 
 	<kbd>Ctrl</kbd>+<kbd>S</kbd> for saving, 
 	<kbd>Ctrl</kbd>+<kbd>Space</kbd> for simple autocompletion
-	and a few [helper functions](https://github.com/andre-st/chrome-injectjs/blob/master/options.html#L48), 
+	and a few [helper functions](https://github.com/andre-st/chrome-injectjs/blob/master/options.html#L37) such as `getUrl` and `saveUrl()`, 
 	it lacks any comfort and visual beauty: 
 	no syntax highlighting or validation (no Ace editor, jslint, ...); 
 	the browser console, however, proved sufficient for debugging
@@ -39,8 +39,11 @@ The fewer strangers fiddling with my browser, the better.
 	- [Show Goodreads.com ratings on Amazon](https://gist.github.com/andre-st/592825fe9a5b2eafc5a73feb80ade649)
 	- [Price-filter for Amazon wishlists](https://gist.github.com/andre-st/ae556e9966738a5b3d7d2ff773196207)
 	- Bypass paywall of your local newspaper
+	- Add download buttons to streaming-websites
 	- [more scripts](https://gist.github.com/search?q=user%3Aandre-st+%23injectjs)
-- flexible and easy to extend due to its script-based configuration (rather than having a complex UI that tries to be as flexible as a programming language just use a programming language); you can add comments everywhere, too
+- flexible and easy to extend due to its script-based configuration 
+	(rather than having a complex UI that tries to be as flexible as a programming language 
+	just use a programming language); you can add comments everywhere, too
 
   ![Screenshot](image/screenshot-20180817.png)
   
