@@ -136,7 +136,7 @@ const nsUI =
 	 * @return {void}
 	 * @public
 	 */
-	autocomplete: function( theTextArea )  // Good enough auto-complete (just the previous keyword-variant)
+	autocomplete: function( theTextArea )  // Good enough auto-completion (just the previous keyword-variant)
 	{
 		const isLetter   = x => x.toLowerCase() != x.toUpperCase();
 		const isStopChar = x => !isLetter( x );
@@ -145,14 +145,20 @@ const nsUI =
 		var   keyword    = "";
 		var   completion = "";           // Just the remainder
 		
-		for(; kwStart > 0; kwStart-- )   // Backwards from cursor position
+		// Get the yet incomplete string in question by searching backwards from the cursor position
+		for(; kwStart > 0; kwStart-- )
 		{
 			const c = theTextArea.value.charAt( kwStart );
 			if( isStopChar( c )) break;
 			keyword = c + keyword;
 		}
 		
+		// Find another occurence of the incomplete string just before the incomplete string at the cursor position.
+		// In 90% it's the variant the user is looking for.
+		// Otherwise the user has to add one or two additional characters to the inoomplete string in question and retry.
 		const matchStart = theTextArea.value.lastIndexOf( keyword, kwStart - 1 );
+		
+		// Follow that occurence until a stop-character to determine a variant of a complete string
 		for( var matchEnd = matchStart + keyword.length; matchEnd < theTextArea.value.length; matchEnd++ )
 		{
 			const c = theTextArea.value.charAt( matchEnd );
@@ -162,6 +168,7 @@ const nsUI =
 		
 		if( completion.length > 30 ) return;  // Something went wrong?
 		
+		// Insert found variant of a complete string at the cursor position
 		theTextArea.value        = theTextArea.value.substring( 0, kwEnd ) + completion + theTextArea.value.substring( kwEnd );
 		theTextArea.selectionEnd = theTextArea.selectionStart = kwEnd + completion.length;  // Set cursor
 	},
