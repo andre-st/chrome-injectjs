@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.8.2] - 2022-04-06
+
+This program is using the plugin-manifest V2,
+and chrome will display an (deprecation) "error" although there is no real error.
+It's just that Chrome's V2-support ends in 2023 and I'm not yet sure how to migrate to the very restricted V3.
+
+### Changed:
+- minor code improvements
+### Fixed:
+- no more spell checking in texteditor (red underlines)
+
+
 ## [0.8.0] - 2021-10-20
 ### Added:
 - saveUrl() allows your mixin-code to trigger the download dialog for any resource with an URL
