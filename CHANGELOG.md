@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.8.3] - 2023-02-12
+### Added:
+- handles URL changes typical for single-page applications, 
+  when the browser doesn't load a new page from the web
+  but just updates the user interface (DOM) and the window-location URL
+  (Note: URL redirection rules are ignored in such a case)
+
+
 ## [0.8.2] - 2022-04-06
 
 This program is using the plugin-manifest V2,

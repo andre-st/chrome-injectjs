@@ -1,8 +1,8 @@
-# Tiny Javascript Injector for Google Chrome
+# Tiny Javascript Injector for Google Chrome, v0.8.3
 
-![Maintenance](https://img.shields.io/maintenance/yes/2022.svg)
+![Maintenance](https://img.shields.io/maintenance/yes/2023.svg)
 
-**Customize a remote website when it doesn't offer a native setting and developers are busy.**
+**Customize a remote website when it doesn't offer a native setting and developers are busy. [What's new?](CHANGELOG.md)**
 
 There are prettier code injection extensions, e.g.,
 Dmitry Novikov's ["User Javascript and CSS"](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US).
@@ -30,7 +30,7 @@ The fewer strangers fiddling with my browser, the better.
 - apart from <kbd>Tab</kbd> for indentation, 
 	<kbd>Ctrl</kbd>+<kbd>S</kbd> for saving, 
 	<kbd>Ctrl</kbd>+<kbd>Space</kbd> for simple autocompletion
-	and a few [helper functions](https://github.com/andre-st/chrome-injectjs/blob/master/options.html#L37) such as `getUrl` and `saveUrl()`, 
+	and a few [helper functions](https://github.com/andre-st/chrome-injectjs/blob/master/options.html#L37) such as `getUrl()` and `saveUrl()`, 
 	it lacks any comfort and visual beauty: 
 	no syntax highlighting or validation (no Ace editor, jslint, ...); 
 	the browser console, however, proved sufficient for debugging
@@ -40,6 +40,7 @@ The fewer strangers fiddling with my browser, the better.
 	- [Price-filter for Amazon wishlists](https://gist.github.com/andre-st/ae556e9966738a5b3d7d2ff773196207)
 	- Bypass paywall of your local newspaper
 	- Add download buttons to streaming-websites
+	- Remove transparent overlays which open ad-sites on click
 	- [more scripts](https://gist.github.com/search?q=user%3Aandre-st+%23injectjs)
 - flexible and easy to extend due to its script-based configuration 
 	(rather than having a complex UI that tries to be as flexible as a programming language 
